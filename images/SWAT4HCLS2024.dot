@@ -1,0 +1,203 @@
+/**
+ * Wolfgang Fahl 2022-05-11
+ * 2026-04-29 Example instance of the abstract schema
+ * based on Q124669329 - SWAT4HCLS 2024
+ *
+ * Source: https://cr.bitplan.com/index.php/Main_Page
+ *
+ * Concrete entities and relationships from Wikidata
+ */
+digraph links {
+   rankdir = RL;
+   graph [fontname = "helvetica"];
+   node [fontname = "helvetica"];
+   edge [fontname = "helvetica"];
+
+   /* Scholars */
+   dumontier [
+       label="Michel\nDumontier"
+       shape="box"
+       href="https://www.wikidata.org/wiki/Q28194921"
+   ]
+   wolstencroft [
+       label="Katherine\nWolstencroft"
+       shape="box"
+       href="https://www.wikidata.org/wiki/Q34388132"
+   ]
+   celebi [
+       label="Remzi\nCelebi"
+       shape="box"
+       href="https://www.wikidata.org/wiki/Q56888653"
+   ]
+   roos [
+       label="Marco\nRoos"
+       shape="box"
+       href="https://www.wikidata.org/wiki/Q57432321"
+   ]
+   waagmeester [
+       label="Andra\nWaagmeester"
+       shape="box"
+       href="https://www.wikidata.org/wiki/Q19845625"
+   ]
+
+   /* Institutions */
+   maastricht [
+      label="Maastricht\nUniversity"
+      shape="box"
+      href="https://www.wikidata.org/wiki/Q1137652"
+   ]
+   leiden [
+      label="Leiden\nUniversity"
+      shape="box"
+      href="https://www.wikidata.org/wiki/Q156598"
+   ]
+   lumc [
+      label="Leiden University\nMedical Centre"
+      shape="box"
+      href="https://www.wikidata.org/wiki/Q1826843"
+   ]
+
+   /* Publisher */
+   ceurws [
+     label="CEUR-WS"
+     shape="box"
+     href="https://www.wikidata.org/wiki/Q27230297"
+   ]
+
+   /* Papers */
+   paper1 [
+     label="Exploring the role of\ngenerative AI in constructing\nKGs for drug indications"
+     shape="box"
+     href="https://ceur-ws.org/Vol-3890/paper-1.pdf"
+   ]
+   paper9 [
+     label="Automated drug\nrepurposing workflow\nfor rare diseases"
+     shape="box"
+     href="https://ceur-ws.org/Vol-3890/paper-9.pdf"
+   ]
+   paper24 [
+     label="Construction of a KG\nfor food health claims"
+     shape="box"
+     href="https://ceur-ws.org/Vol-3890/paper-24.pdf"
+   ]
+
+   /* Proceedings */
+   proceedings [
+     label="SWAT4HCLS 2024\nProceedings\n(CEUR Vol-3890)"
+     color="blue"
+     fontcolor="blue"
+     shape="box"
+     style="bold"
+     href="https://ceur-ws.org/Vol-3890/"
+   ]
+
+   /* Event */
+   swat4hcls_2024 [
+     label="SWAT4HCLS\n2024"
+     color="blue"
+     fontcolor="blue"
+     style="bold"
+     shape="box"
+     href="https://www.wikidata.org/wiki/Q124669329"
+   ]
+
+   /* EventSeries */
+   swat4hcls_series [
+     label="SWAT4HCLS"
+     color="blue"
+     fontcolor="blue"
+     shape="box"
+     style="bold"
+     href="https://www.wikidata.org/wiki/Q56846035"
+   ]
+
+   /* Proceedings edges */
+   proceedings -> ceurws [
+      label="publisher"
+      href="https://www.wikidata.org/wiki/Property:P123"
+   ]
+   proceedings -> roos [
+      label="editor"
+      href="https://www.wikidata.org/wiki/Property:P98"
+   ]
+   proceedings -> waagmeester [
+      label="editor"
+      href="https://www.wikidata.org/wiki/Property:P98"
+   ]
+   proceedings -> swat4hcls_2024 [
+      color="blue"
+      fontcolor="blue"
+      label="is proceedings of"
+      style="bold"
+      href="https://www.wikidata.org/wiki/Property:P4745"
+   ]
+
+   /* Paper -> author */
+   paper1 -> dumontier [
+       label="author"
+       href="https://www.wikidata.org/wiki/Property:P50"
+   ]
+   paper9 -> wolstencroft [
+       label="author"
+       href="https://www.wikidata.org/wiki/Property:P50"
+   ]
+   paper24 -> celebi [
+       label="author"
+       href="https://www.wikidata.org/wiki/Property:P50"
+   ]
+   paper24 -> dumontier [
+       label="author"
+       href="https://www.wikidata.org/wiki/Property:P50"
+   ]
+
+   /* Scholar -> institution (affiliation) */
+   dumontier -> maastricht [
+       label="affiliation"
+       href="https://www.wikidata.org/wiki/Property:P1416"
+   ]
+   wolstencroft -> leiden [
+       label="affiliation"
+       href="https://www.wikidata.org/wiki/Property:P1416"
+   ]
+   celebi -> maastricht [
+       label="affiliation"
+       href="https://www.wikidata.org/wiki/Property:P1416"
+   ]
+   roos -> lumc [
+       label="affiliation"
+       href="https://www.wikidata.org/wiki/Property:P1416"
+   ]
+
+   /* Paper cites paper */
+   paper24 -> paper1 [
+       label="cites"
+       href="https://www.wikidata.org/wiki/Property:P2860"
+   ]
+
+   /* Paper -> proceedings (published in) */
+   paper1 -> proceedings [
+       label="published in"
+       href="https://www.wikidata.org/wiki/Property:P1433"
+   ]
+   paper9 -> proceedings [
+       label="published in"
+       href="https://www.wikidata.org/wiki/Property:P1433"
+   ]
+   paper24 -> proceedings [
+       label="published in"
+       href="https://www.wikidata.org/wiki/Property:P1433"
+   ]
+
+   /* Event -> EventSeries */
+   swat4hcls_2024 -> swat4hcls_series [
+       color="blue"
+       fontcolor="blue"
+       label="part of the series"
+       style="bold"
+       href="https://www.wikidata.org/wiki/Property:P179"
+   ]
+
+   { rank = same; paper1; paper9; paper24; dumontier; wolstencroft; celebi; }
+   { rank = same; proceedings; maastricht; leiden; lumc; ceurws; }
+   { rank = same; swat4hcls_2024; swat4hcls_series; }
+}
