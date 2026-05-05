@@ -200,10 +200,14 @@ Figure~\ref{fig:ceurmake_workflow} gives an overview of the CEUR-WS Semantificat
     \label{fig:ceurmake_workflow}
 \end{figure}
 
-\section{In-Use: Community Impact - Scholia, WikiCite, CEUR-WS }\label{sec:Community Impact}
+\section{In-Use: Community Impact - WikiCite, Scholia, CEUR-WS }\label{sec:Community Impact}
+WikiCite is an initiative to create a bibliographic database based on Wikidata  ~\cite{WikiCite}. 
+
 Scholia ~\cite{Nielsen2017} is a portal serving wikidata content for the needs of scholars. It is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples that form the main graph belong to scholarly articles and their linked entities. The Wikimedia foundation needed to perform a graph split due to a 4 Terrabyte maximum storage limit of the Blazegraph backend in use. The Scholia community decided to use QLever ~\cite{Bast2017} as the new backend and make all queries SPARQL1.1 compliant ~\cite{Willighagen2026Scholia}.
 Note that before the graph split there was a hold on adding more scholarly articles to Wikidata which was the reason we did no mass-insert CEUR-WS paper metadata yet.
 
+The WikiCite, Wikidata and Scholia and the CEUR-WS stakeholder are overlapping communities.  
+ 
 \section{Single Point of Truth Bootstrapping}
 \section{Lessons Learned}\label{sec:LessonsLearned}
 \subsection{Queries as first-class citizens}
