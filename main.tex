@@ -99,8 +99,15 @@ We further point out the challenges of aligning the digital, social, and physica
 \begin{figure}
     \centering
     \includesvg[width=\linewidth]{images/CoreEntities.svg}
-    \caption{Most relevant entities for scientific publishing}
+    \caption{Most relevant entities for scientific publishing (abstract schema). Source: CR research wiki~\cite{Fahl_CR_Wiki}.}
      \label{fig:core_entities}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg[width=\linewidth]{images/SWAT4HCLS2024.svg}
+    \caption{Concrete instance of the schema from Figure~\ref{fig:core_entities}: \wdq{SWAT4HCLS 2024}{Q124669329}, CEUR-WS Vol-3890. Source: CR research wiki~\cite{Fahl_CR_Wiki}.}
+    \label{fig:swat4hcls_2024_instance}
 \end{figure}
 
 The Traditional publishing workflows often handle the metadata of the needed core entities (as shown in Figure~\ref{fig:core_entities}) in an unFAIR way. Findable, Accessible, Interoperable, and Reusable (FAIR) ~\ref{sec:FAIR}, Single Point of Truth (SPoT), and Single Source of Truth (SSoT) principles are having low priority. Therefore the opportunities to collect the metadata during the different lifcecyle stages of an event as shown in table \ref{tab:ScientificEventLifecycle} are missed. As technical editorr of CEUR-WS we have been feeling this pain for over a decade. This work shows how the HTML/PDF SSoT of CEUR-WS at the ceur-ws.org domain (SPoT) has been used to create a Knowledge Graph representation of the relevant entities in Wikidata between 2022 and 2026 as a step in this direction thus allowing portals such as Scholia to present the RDF query results in an aspect-oriented and user-friendly way.
@@ -233,7 +240,7 @@ Instead we propose to do smaller changes gradually. As a first step, the main in
 
 
 \subsection{Supplemental Material Statement} Source code for the prototypes and semantification tools is available via the repositories of the
-\footnotelink{https://github.com/ceurws}{github ceurws organization}.
+\footnotelink{https://github.com/ceurws}{github ceurws organization}. Extended supplemental material --- including the schema diagrams (Figures~\ref{fig:core_entities} and~\ref{fig:swat4hcls_2024_instance}) in their editable Graphviz form, the SPARQL queries derived from the Semantic Publishing Challenge, and background research --- is provided by the CR research wiki~\cite{Fahl_CR_Wiki}.
 The LaTeX sources, bibliography, build pipeline and the \texttt{AGENTS.md} governance policy for AI-assisted editing of this paper are available at~\cite{CEURWSSemantificationISWC2026Repo}. The cited software artefacts are released under Apache-2.0: \texttt{ceur-spt}~\cite{ceur-spt}, \texttt{pyCEURmake}~\cite{pyCEURmake}, \texttt{snapquery}~\cite{snapquery}, and \texttt{wdgrid}~\cite{wdgrid}.
 \subsection{Acknowledgements}
 \label{sec:ack}
