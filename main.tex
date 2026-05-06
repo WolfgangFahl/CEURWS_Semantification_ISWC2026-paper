@@ -187,6 +187,8 @@ For each core entity we analyzed the availability of Wikidata properties by usin
 
 The pyCEURmake ~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages. The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the ~\cite{geograpy3} library. Author, Editor and Paper details have been aligned with the dblp SPARQL endpoint.
 
+Cermine ~\cite{Tkaczyk_2015} and GROBID \cite{Lopez_2009} have been run on the papers to provide additional metadata references.
+
 snapquery ~\cite{snapquery} was used to make sure the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
 
 ceur-spt ~\cite{ceur-spt} is the prototype for showing the benefits of semantification by improved linking and navigation capababilities compared to the current static CEUR-WS HTML page.
@@ -207,8 +209,6 @@ WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlappin
 \subsection{Property creation as a community process}
 Wikidata properties such as \wdp{P11633}{colocated with} undergo a \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal}{Wikidata's property proposal process} process before a new propery is created. As described in ~\cite{FahlHOD23} the creation of \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal/colocated\_with}{property proposal} took some effort and  lead to the clarification that the property is asymmetric. The property was considered as highly relevant and well defined. 
 
-
-
 \subsection{Legal aspects of Publishing Personal Data of Scholars}
 \label{sec:legal}
 The proposed workflow calls for publishing personal data of authors
@@ -227,6 +227,7 @@ Instead we propose to do smaller changes gradually. As a first step, the main in
 \section{Roadmap: Metadata first Publishing}\label{sec:Metadata-first Publishing}
 The coverage of the core entities Event Series, Papers, Scholars and Institutions needs to be improved based on consolidating and completing the RDF data of the downstream indexing services at DBLP and german national library DNB. 
 The holy grail of this effort will be to change the CEUR-WS single point of truth from the current HTML/PDF base to a workflow in which the metadata is mined from the proceedings matter. 
+The move of the CEUR-WS infrastructure from RWTH Aachen to Gesellschaft for Informatik in 2026 is an opportunity to make further steps in this direction.  The CEUR-WS semantify project ~\cite{CEUR-WSSemantify2026} 
 
 \section{Conclusion}\label{sec:Conclusion}
 CEUR-WS proceedings metadata is systematically made available in Wikidata via the CEUR-WS bot. The relevant Task~1 Named Parameterized Queries of the Semantic Publishing Challenge of 2014/2015 are now available on different endpoints namely the  SPARQL1.1  compatible QLever endpoint. The Scholia portal provides production access to queries based on and extending this set. The Wikidata, Wikicite, Scholia and CEUR-WS stakeholder communities have appreciated and contributed to this work.
