@@ -67,10 +67,7 @@
 \newcommand{\wdqTable}[2]{\href{https://www.wikidata.org/wiki/#2}{#1 (#2)}}
 
 %% Article Info
-
-
 \title{Semantified CEUR-WS in Wikidata}
-
 \author{Wolfgang Fahl\inst{1}\orcidID{0000-0002-0821-6995} \and
 Tim Holzheim\inst{1,2}\orcidID{0000-0003-2533-6363} \and
 Christoph Lange\inst{1,2}\orcidID{0000-0001-9879-3827} \and
@@ -123,32 +120,6 @@ After multiple unfinished attempts to make the metadata of the CEUR-WS platform 
 
 Doing so was harder than one would expect - the devil is in the details.
 
-\subsection{Making CEUR-WS FAIR}\label{sec:FAIR}
-% FAIR Data Introduction - why is this relevant? EOSC, NFDI, Open Access, Open Science
-% FAIR Data as a basis for Knowledge Graphs
-The FAIR principles~\cite{GOFAIR2019,Wilkinson2016} with Persistent Identifiers (PIDs) and rich metadata as core components are being adopted by an increasing number of publishing organizations.
-
-To make CEUR-WS metadata fair a set of relevant queries should be supported, as derived from the original set of queries of the 2014 Semantic publishing challenge as outlined in Section~\ref{sec:SemantificationStory}.
-The metadata should be provided following an ontology that is based on established ontologies.
-The manual and automatic curation of entries should be possible with public access for all stakeholders, e.g., editors, authors, organizers, publishers and indexers.
-The infrastructure should be stable and there should be sufficient trust in its long term availability
-An open source non-profit infrastructure is preferred since this is also the mode of operation of CEUR-WS
-
-Given the HTML/PDF/text input of CEUR-WS, the corresponding Knowledge Graph needs to be created and the single-point-of-truth computer readable metadata be separated from the different representations such as HTML so that the above requirements are fulfilled.
-
-%The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge}{original task} called for 20 such queries to be answerable.
-%Formally we need to implement a function hat takes two Trees (IT,PT) as an Input and outputs a Graph G=(V,E).
-
-%The IT Tree is the HTML Dom Tree of the CEUR-WS index page where the leaves are HTML markup nodes that might be annotated with an attempted RDFa syntax.
-
-%The PT Tree is a three level filesystem /HTML Dom tree of
-%Directories per volumes - with an index HTML DOM Tree for the volume and a list of individual PDF files per paper of the volume.
-
-%The leaf node contents are the PDF contents of the files and the HTML markup nodes of the Volume index page.
-Both the HTML and PDF encoding of the original scientific content are structured for the purpose of optimizing the display / output on paper or screens; therefore, there is a structure loss compared to what was originally available in the text document processor files that the authors might have been using~\cite{Fahl2023HSP}.  Most scholars are not aware of this loss in the daily use of published content just because the documents are optimized for display and human consumption~\cite{Yu2020}. For the metadata extraction and use in knowledge graphs the difference is sometimes disastrous, e.g., when a simple text from a PDF document can not be extracted any more due to exotic styling and formatting or simply because only a scanned graphic image version of an older document is available that needs optical character recognition to extract the textual content.
-
-The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been 33 different versions of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor, undocumented differences even within these versions. The usage of the different page versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
-
 % https://cr.bitplan.com/index.php/CEUR-WS_Versions
 \subsection{Contributions of this Paper}
 The core contributions presented in this work are:
@@ -183,11 +154,38 @@ Figure~\ref{fig:ceurmake_workflow} gives an overview of the CEUR-WS Semantificat
     \label{fig:ceurmake_workflow}
 \end{figure}
 
-For each core entity we analyzed the availability of Wikidata properties by using our wdgrid analysis tool ~\cite{wdgrid} ~\cite{FahlHW0D22}. This tool also generates naive or sophisticated SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge. 
+\subsection{Making CEUR-WS FAIR}\label{sec:FAIR}
+% FAIR Data Introduction - why is this relevant? EOSC, NFDI, Open Access, Open Science
+% FAIR Data as a basis for Knowledge Graphs
+The FAIR principles~\cite{GOFAIR2019,Wilkinson2016} with Persistent Identifiers (PIDs) and rich metadata as core components are being adopted by an increasing number of publishing organizations.
 
+To make CEUR-WS metadata fair a set of relevant queries should be supported, as derived from the original set of queries of the 2014 Semantic publishing challenge as outlined in Section~\ref{sec:SemantificationStory}.
+The metadata should be provided following an ontology that is based on established ontologies.
+The manual and automatic curation of entries should be possible with public access for all stakeholders, e.g., editors, authors, organizers, publishers and indexers.
+The infrastructure should be stable and there should be sufficient trust in its long term availability
+An open source non-profit infrastructure is preferred since this is also the mode of operation of CEUR-WS
+
+Given the HTML/PDF/text input of CEUR-WS, the corresponding Knowledge Graph needs to be created and the single-point-of-truth computer readable metadata be separated from the different representations such as HTML so that the above requirements are fulfilled.
+
+%The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge}{original task} called for 20 such queries to be answerable.
+%Formally we need to implement a function hat takes two Trees (IT,PT) as an Input and outputs a Graph G=(V,E).
+
+%The IT Tree is the HTML Dom Tree of the CEUR-WS index page where the leaves are HTML markup nodes that might be annotated with an attempted RDFa syntax.
+
+%The PT Tree is a three level filesystem /HTML Dom tree of
+%Directories per volumes - with an index HTML DOM Tree for the volume and a list of individual PDF files per paper of the volume.
+
+%The leaf node contents are the PDF contents of the files and the HTML markup nodes of the Volume index page.
+Both the HTML and PDF encoding of the original scientific content are structured for the purpose of optimizing the display / output on paper or screens; therefore, there is a structure loss compared to what was originally available in the text document processor files that the authors might have been using~\cite{Fahl2023HSP}.  Most scholars are not aware of this loss in the daily use of published content just because the documents are optimized for display and human consumption~\cite{Yu2020}. For the metadata extraction and use in knowledge graphs the difference is sometimes disastrous, e.g., when a simple text from a PDF document can not be extracted any more due to exotic styling and formatting or simply because only a scanned graphic image version of an older document is available that needs optical character recognition to extract the textual content.
+
+The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been 33 different versions of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor, undocumented differences even within these versions. The usage of the different page versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
+
+\subsection{Extracting metadata from HTML and PDF targetting Wikidata}
 The pyCEURmake ~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages. The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the ~\cite{geograpy3} library. Author, Editor and Paper details have been aligned with the dblp SPARQL endpoint.
 
 Cermine ~\cite{Tkaczyk_2015} and GROBID \cite{Lopez_2009} have been run on the papers to provide additional metadata references.
+
+For each core entity we analyzed the availability of Wikidata properties by using our wdgrid analysis tool ~\cite{wdgrid} ~\cite{FahlHW0D22}. This tool also generates naive or sophisticated SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge. 
 
 snapquery ~\cite{snapquery} was used to make sure the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
 
@@ -250,6 +248,9 @@ of the coauthorship as graph visualization.
 \label{sec:single_point_of_truth_bootstrapping}
 \section{Lessons Learned}\label{sec:LessonsLearned}
 \subsection{Queries as first-class citizens}
+The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{"If you can not query it it does not exist"} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries. Having the queries as named parameterized technology independent entities themselves is helpful ~\cite{snapquery}. Nielsen's  Synia ~\cite{NielsenSynia2023} approach shows a lightweight application of this idea. 
+
+A main success factor for this work was being able to apply metadata to the queries. This way the queries could be ordered by task and/or relevance and linked to their respective implementation. These links were just motivations - as first class citizens the queries are available with proper URIs as persistent identifiers and part of a meta - knowledge graph that is useful for the further semantification steps.  
 \subsection{Property creation as a community process}
 Wikidata properties such as \wdp{P11633}{colocated with} undergo a \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal}{Wikidata's property proposal process} process before a new propery is created. As described in ~\cite{FahlHOD23} the creation of \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal/colocated\_with}{property proposal} took some effort and  lead to the clarification that the property is asymmetric. The property was considered as highly relevant and well defined. 
 
