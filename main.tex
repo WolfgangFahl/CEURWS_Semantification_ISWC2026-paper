@@ -201,7 +201,42 @@ Note that before the graph split there was a hold on adding more scholarly artic
 Writes to Wikidata are performed through the officially approved bot account \textit{User:CEUR-WS}~\cite{CEURWSBot}, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
 
 WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100.000 distinct authors and over 6.500 distinct editors with digital traces in the dblp CEUR-WS index entries. Since the CEUR-WS wikidata bot 
- 
+\subsection{Scholia}
+Table ~\ref{tab:scholia_event_panels}
+whows 12 SPARQL-driven panels on the Scholia event
+aspect~\cite{Nielsen2017}, rendered identically by the legacy Blazegraph
+endpoint at
+\url{https://scholia.toolforge.org/event/Q124669329} and by the post
+graph-split QLever endpoint~\cite{Bast2017,Willighagen2026Scholia} at
+\url{https://qlever.scholia.wiki/event/Q124669329}, illustrated for
+SWAT4HCLS~2024 (\wdq{Q124669329}{Q124669329}). All 12 panels survived the
+2025 Wikidata graph split unchanged; only the underlying engine and the
+SPARQL dialect (1.1 compliant) differ.
+
+\begin{table}[t]
+\label{tab:}
+\centering
+\caption{}
+\label{tab:scholia_event_panels}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\toprule
+\# & Panel (template id) & What the panel answers about the event \\
+\midrule
+1  & \texttt{data}                      & Core metadata: label, date, location, organisers, main subject \\
+2  & \texttt{people}                    & Organisers, speakers, editors and participants \\
+3  & \texttt{co-authors}                & Co-author graph of people involved  \\
+4  & \texttt{sponsors}                  & Sponsors of the event \\
+5  & \texttt{timeline}                  & Timeline of related events \\
+6  & \texttt{topic-scores}              & Topic scores derived from works at the event \\
+7  & \texttt{uses}                      & Software, datasets and methods used \\
+8  & \texttt{recent-publications}       & Recent publications by organisers, speakers, participants \\
+9  & \texttt{proceedings}               & Works published in the proceedings related to the event \\
+10 & \texttt{presentations}             & Talks, posters and presentations given at the event \\
+11 & \texttt{related-events-timelocation} & Related events based on time and location \\
+12 & \texttt{related-events-people}     & Related events based on people overlap \\
+\bottomrule
+\end{tabularx}
+\end{table}
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
 \section{Lessons Learned}\label{sec:LessonsLearned}
