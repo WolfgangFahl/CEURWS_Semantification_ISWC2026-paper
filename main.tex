@@ -88,7 +88,6 @@ In this work we show how we enabled the semantification using Wikidata as the ta
 
 We further point out the challenges of aligning the digital, social, and physical aspects of the ongoing transformation and outline a roadmap to use the available queries to bootstrap a new RDF-based metadata-first publishing approach that will mine metadata from proceedings matter and generate the HTML from it instead of the other way around.
 
-
 \end{abstract}
 \keywords{Knowledge Graph \and Linked Data \and Metadata Extraction \and Publishing \and Semantic Web \and Wikidata}
 
@@ -107,16 +106,16 @@ We further point out the challenges of aligning the digital, social, and physica
     \label{fig:swat4hcls_2024_instance}
 \end{figure}
 
-The Traditional publishing workflows often handle the metadata of the needed core entities (as shown in Figure~\ref{fig:core_entities}) in an unFAIR way. Findable, Accessible, Interoperable, and Reusable (FAIR) ~\ref{sec:FAIR}, Single Point of Truth (SPoT), and Single Source of Truth (SSoT) principles are having low priority. Therefore the opportunities to collect the metadata during the different lifcecyle stages of an event ~\cite{FahlHOD23} are missed. As technical editorr of CEUR-WS we have been feeling this pain for over a decade. This work shows how the HTML/PDF SSoT of CEUR-WS at the ceur-ws.org domain (SPoT) has been used to create a Knowledge Graph representation of the relevant entities in Wikidata between 2022 and 2026 as a step in this direction thus allowing portals such as Scholia to present the RDF query results in an aspect-oriented and user-friendly way.
+The Traditional publishing workflows often handle the metadata of the needed core entities (as shown in Figure~\ref{fig:core_entities}) in an unFAIR way. Findable, Accessible, Interoperable, and Reusable (FAIR) ~\ref{sec:FAIR}, Single Point of Truth (SPoT), and Single Source of Truth (SSoT) principles are having low priority. Therefore the opportunities to collect the metadata during the different lifecyle stages of an event ~\cite{FahlHOD23} are missed. As technical editor of CEUR-WS we have been feeling this pain for over a decade. This work shows how the HTML/PDF SSoT of CEUR-WS at the ceur-ws.org domain (SPoT) has been used to create a Knowledge Graph representation of the relevant entities in Wikidata between 2022 and 2026 as a step in this direction thus allowing portals such as Scholia to present the RDF query results in an aspect-oriented and user-friendly way.
 
 \subsection{CEUR Workshop Proceedings}
 Since 1995 CEUR Workshop Proceedings (CEUR-WS) (https://ceur-ws.org/) has published more than 4,200 Volumes and over 90.000 papers as a free online service for publishing proceedings of scientific workshops (and smaller conferences) in computer science, operated by at team of unpaid volunteers.
 
 Technically, all data and metadata of the proceedings are directly represented as a static website using HTML, PDF and HTTP and FTP protocols as provided by the workshop editors along the CEUR-WS \tquote{how to submit} guide~\cite{CEURHowtoSubmit}.
 
-The metadata is available after some delay of weeks or month through indexing services such as dblp~\cite{Ley2009} and {K10plus}\cite{k10plus2019}\footnote{\url{https://dblp.org/}, \url{https://opac.k10plus.de}} and at the archive of the TIB \url{https://www.tib.eu/}.
+The metadata is available after some delay of weeks or month through indexing services such as DBLP~\cite{Ley2009} and {K10plus}\cite{k10plus2019}\footnote{\url{https://dblp.org/}, \url{https://opac.k10plus.de}} and at the archive of the TIB \url{https://www.tib.eu/}.
 
-After multiple unfinished attempts to make the metadata of the CEUR-WS platform available for semantic analysis and querying we report on the successful use of wikidata and scholia as the knowledge graph platform to provide FAIR metadata.
+After multiple unfinished attempts to make the metadata of the CEUR-WS platform available for semantic analysis and querying we report on the successful use of Wikidata and Scholia as the knowledge graph platform to provide FAIR metadata.
 
 Doing so was harder than one would expect - the devil is in the details.
 
@@ -132,16 +131,13 @@ The core contributions presented in this work are:
 
 \end{enumerate}
 
-These contributions are valuable for other publishing use cases that struggle with the same paint points.
+These contributions are valuable for other publishing use cases that struggle with the same pain points.
 
 \section{From Semantic Publishing Challenge 2015 via Text2KG2023 to Production 2026}\label{sec:SemantificationStory}
 The Semantic Publishing Challenge ~\cite{Lange2014,DiIorio2015,Ronzano_2014} started in 2014 with Task~1 calling for \tquote{answering queries related to the quality of workshops by computing metrics from data extracted from their proceedings, also considering information about persons and events}.
 
 The relevance of the original set of 20 queries for Task~1 was subjectively rated by us, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and the 5 queries Q1.5, Q1.12, Q1.13, Q1.16 and Q1.17 that rely on the main index have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop ~\cite{FahlHOD23}.
 The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge\_Queries}{SPARQL queries} are available as named parameterized queries. The snapquery project ~\cite{snapquery} was motivated by this set of queries and was a candidate middleware for the Scholia project ~\cite{Willighagen2026Scholia}. 
-
-https://scholia.toolforge.org/event/Q124669329
-https://qlever.scholia.wiki/event/Q124669329
 
 \section{CEUR-WS Semantification in Wikidata}\label{sec:Semantification}
 
@@ -181,7 +177,7 @@ Both the HTML and PDF encoding of the original scientific content are structured
 The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been 33 different versions of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor, undocumented differences even within these versions. The usage of the different page versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
 
 \subsection{Extracting metadata from HTML and PDF targetting Wikidata}
-The pyCEURmake ~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages. The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the ~\cite{geograpy3} library. Author, Editor and Paper details have been aligned with the dblp SPARQL endpoint.
+The pyCEURmake ~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages. The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the ~\cite{geograpy3} library. Author, Editor and Paper details have been aligned with the DBLP SPARQL endpoint.
 
 Cermine ~\cite{Tkaczyk_2015} and GROBID \cite{Lopez_2009} have been run on the papers to provide additional metadata references.
 
@@ -198,7 +194,7 @@ Scholia ~\cite{Nielsen2017} is a portal serving wikidata content for the needs o
 Note that before the graph split there was a hold on adding more scholarly articles to Wikidata which was the reason we did no mass-insert CEUR-WS paper metadata yet.
 Writes to Wikidata are performed through the officially approved bot account \textit{User:CEUR-WS}~\cite{CEURWSBot}, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
 
-WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100.000 distinct authors and over 6.500 distinct editors with digital traces in the dblp CEUR-WS index entries. Since the CEUR-WS wikidata bot 
+WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100.000 distinct authors and over 6.500 distinct editors with digital traces in the DBLP CEUR-WS index entries. Since the CEUR-WS wikidata bot 
 \subsection{Scholia}
 Table ~\ref{tab:scholia_event_panels}
 shows 12 SPARQL-driven panels on the Scholia event
