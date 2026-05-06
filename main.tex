@@ -219,27 +219,27 @@ SPARQL dialect (1.1 compliant) differ.
 \centering
 \caption{Scholia SWAT4HCLS~2024 panels based on SPARQL queries}
 \label{tab:scholia_event_panels}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\begin{tabularx}{\linewidth}{@{}l l l l X@{}}
 \toprule
-\# & Panel/Query & style & What the query contains \\
+\# & Panel/Query & style & entities  \\
 \midrule
-1  & \texttt{data}                      && Core metadata: label, date, location, organisers, main subject \\
-2  & \texttt{people}                    && Organisers, speakers, editors and participants \\
-3  & \texttt{co-authors}                &graph& Co-author graph of people involved  \\
-4  & \texttt{sponsors}                  && Sponsors of the event \\
-5  & \texttt{timeline}                  &timeline& Timeline of related events \\
-6  & \texttt{topic-scores}              && Topic scores derived from works at the event \\
-7  & \texttt{uses}                      && Software, datasets and methods used \\
-8  & \texttt{recent-publications}       && Recent publications by organisers, speakers, participants \\
-9  & \texttt{proceedings}               && Works published in the proceedings related to the event \\
-10 & \texttt{presentations}             && Talks, posters and presentations given at the event \\
-11 & \texttt{related-events-timelocation} && Related events based on time and location \\
-12 & \texttt{related-events-people}     && Related events based on people overlap \\
+1  & \texttt{data}                      &header& event\\
+2  & \texttt{people}                    &table & scholar \\
+3  & \texttt{co-authors}                &graph& scholar  \\
+4  & \texttt{sponsors}                  &table& institution \\
+5  & \texttt{timeline}                  &timeline& event \\
+6  & \texttt{topic-scores}              &table&  \\
+7  & \texttt{uses}                      &table&  \\
+8  & \texttt{recent-publications}       &table& paper, scholar \\
+9  & \texttt{proceedings}               &table& proceedings, paper \\
+10 & \texttt{presentations}             &table& \\
+11 & \texttt{related-events-timelocation}&table& event \\
+12 & \texttt{related-events-people}     &table& event,scholar \\
 \bottomrule
 \end{tabularx}
 \end{table}
 Figure \ref{fig:swat4hcls_2024_coauthor_graph} shows the user friendly display
-of the coauthor ship as graph visualization.
+of the coauthorship as graph visualization.
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{images/SWAT4HCLS2024-CoauthorGraphSnippet.png}
