@@ -103,7 +103,7 @@ We further point out the challenges of aligning the digital, social, and physica
 
 \begin{figure}
     \centering
-    \includesvg[width=\linewidth]{images/SWAT4HCLS2024.svg}
+    \includesvg[width=\linewidth,inkscapelatex=false]{images/SWAT4HCLS2024-clean.svg}
     \caption{SWAT4HCLS2024 example graph walk}
     \label{fig:swat4hcls_2024_instance}
 \end{figure}
@@ -179,13 +179,47 @@ For each core entity we analyzed the availability of Wikidata properties by usin
 
 snapquery ~\cite{snapquery} was used to make sure the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
 
-ceur-spt ~\cite{ceur-spt} is the prototype for showing the benefits of semantification by improved linking and navigation capabilities compared to the current static CEUR-WS HTML page.
+The ceur-spt prototype~\cite{ceur-spt} demonstrates the benefits of
+semantification by improved linking and navigation capabilities compared
+to the current static CEUR-WS HTML pages. A complete Cermine run has
+been integrated so that paper-level metadata (authors, affiliations,
+references) is available through the same interface that replicates the
+CEUR-WS index (Figure~\ref{fig:ceurspt_index}). Per-volume pages expose
+the consolidated metadata of each proceedings entry, as illustrated for
+Vol-3262 in Figures~\ref{fig:ceurspt_vol3262_sample}
+and~\ref{fig:ceurspt_vol3262_detail}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{images/meeting_ceurspt_index_screenshot.png}
+    \caption{ceur-spt index page at
+    \url{https://ceurspt.wikidata.dbis.rwth-aachen.de/index.html} showing
+    the re-synchronized CEUR-WS proceedings listing with a complete
+    Cermine run.}
+    \label{fig:ceurspt_index}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{images/meeting_ceurspt_vol3262_sample.png}
+    \caption{CEUR-WS Volume 3262 Wikidata Workshop 2022 example with rich detail links }
+    \label{fig:ceurspt_vol3262_sample}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{images/meeting_ceurspt_vol3262_detail.png}
+    \caption{Detail excerpt of the Vol-3262 ceur-spt page: structured
+    paper-level metadata derived from the HTML index and PDF mining
+    pipeline.}
+    \label{fig:ceurspt_vol3262_detail}
+\end{figure}
 
 \section{Challenges in Aligning the Digital, Social and Physical Aspects}\label{sec:Challenges}
 CEUR-WS is a digital-native, online-only publisher operated by
 volunteer editors, and serves a scholarly community of editors, authors
 and research institutions. Downstream indexing activities are handled
-by DBLP, the German National Library (GND), TIB, Wikidata/WikiCite and
+by DBLP, the German National Library (DNB), TIB, Wikidata/WikiCite and
 the Scholia community. This section describes the challenges of
 aligning the digital, social and physical aspects, given that
 traditional proceedings are still printed on paper and stored on book
@@ -202,12 +236,11 @@ there never was. As discussed in Section~\ref{sec:FAIR}, the current
 Single Point of Truth encodes metadata in HTML and PDF optimized for
 printing and human display rather than for machine consumption. The
 Wikidata export makes it possible to query measurable metrics such as
-coverage and consistency. The public synchronization dashboard at
-\url{https://cvb.wikidata.dbis.rwth-aachen.de/wikidatasync} is an
+coverage and consistency. The \footnote{https://cvb.wikidata.dbis.rwth-aachen.de/wikidatasync}{public synchronization dashboard} is an
 example that makes the downstream indexing observable.
 
 \subsection{Social: volunteer ecosystems across institutional boundaries}\label{sec:challenge_social}
-CEUR-WS editors, DBLP curators, GND and TIB librarians, Wikidata and
+CEUR-WS editors, DBLP curators, DNB and TIB librarians, Wikidata and
 WikiCite contributors, and Scholia maintainers all operate as volunteer
 or mixed-funding communities, each with their own goals and procedures.
 Coordination across such communities is loosely coupled and based on
@@ -216,7 +249,7 @@ future. Our work shows that there are gaps; for example, DBLP is
 currently indexing only about 80\,\% of all volumes.
 
 \subsection{Physical: library catalogues and the shelf model}\label{sec:challenge_physical}
-Library catalogues such as GND historically optimize for physical
+Library catalogues such as the DNB curated integrated authority file  \footnotelink{https://www.dnb.de/EN/Professionell/Standardisierung/GND/gnd\_node.html}{GND} historically optimize for physical
 books --- proceedings that sit on a shelf. For a digital-native
 publisher there is a mismatch: the distinction between \emph{event},
 \emph{event series} and \emph{proceedings}, which the core-entity
@@ -326,6 +359,35 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
+\subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
+The structure of the semantified data is currently being consolidated
+in the public \texttt{semantify} repository through two open
+discussions: schema consolidation~\cite{CEURWSSemantify6} and sample
+volume subgraphs~\cite{CEURWSSemantify15}. Figure~\ref{fig:ontology_schema_overview}
+gives the overall schema a clickable SVG variants of
+all diagrams are maintained in the CR research wiki~\cite{Fahl_CR_Wiki}.
+
+A first draft is already productive: JSON-LD is generated for every
+volume, e.g.
+\url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld?include_errors=false}.
+The open design questions concern (i) the reuse of established
+vocabularies --- \texttt{schema.org}, Dublin Core and other vocabularies
+with significant uptake are preferred over bespoke terms, with
+mappings provided where necessary, (ii) the granularity of the model
+(e.g., session structure, distinction between joint proceedings and
+joint events) and (iii) tooling: creation of the JSON-LD from workshop
+website plus PDFs should be automated so that editors only curate the
+JSON-LD, and the HTML page is regenerated from it --- inverting the
+current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{images/meeting_ontology_schema_overview.png}
+    \caption{Overview of the proposed CEUR-WS Proceedings ontology.
+    Clickable SVG:
+    \url{https://cr.bitplan.com/images/diagrams/Diagrams_ae053eec812cc103f43357e5348a8737.svg}.}
+    \label{fig:ontology_schema_overview}
+\end{figure}
 \section{Lessons Learned}\label{sec:LessonsLearned}
 \subsection{Queries as first-class citizens}
 The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{If you can not query it it does not exist} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries. Having the queries as named parameterized technology independent entities themselves is helpful ~\cite{snapquery}. Nielsen's  Synia ~\cite{NielsenSynia2023} approach shows a lightweight application of this idea. 
@@ -348,6 +410,18 @@ scholarly publishing.
 \subsection{Iterative introduction beats big bang}
 The challenge in introducing the new CEUR-WS workflow is to find a sweet spot between effort and benefit~\cite{Pohl2015-vj}. Given the long-tail distribution of issues of ever more corner and exotic cases that have shown up in the analysis of the existing data and workflow there is potentially a huge list of \tquote{small} problems that would require an inadequately high amount of effort to be solved systematically. The \tquote{sweet spot} is in solving only the most relevant problems and not fixing some of the exotic details at all or doing it manually. Therefore we will avoid a \tquote{big bang} introduction, which would replace the old approach in one single big (and therefore very risky) step.
 Instead we propose to do smaller changes gradually. As a first step, the main index.html shall be split by years (with a link to the old legacy complete list). Then, the per-year list may be generated from the single point of truth data. This will be continued iteratively, going from the current year back to a point where it seems no longer reasonable to spend further effort.
+
+A first bootstrapping prototype of this year-split is already available
+(see Figure~\ref{fig:ceurspt_index_alt_yearsplit}). 
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{images/meeting_ceurspt_index_alt_yearsplit.png}
+    \caption{Year-split prototype of the CEUR-WS index
+    (\texttt{index\_alt.html}): a step towards iterative replacement of
+    the monolithic index page.}
+    \label{fig:ceurspt_index_alt_yearsplit}
+\end{figure}
 \section{Roadmap: Metadata first Publishing}\label{sec:Metadata-first Publishing}
 The coverage of the core entities Event Series, Papers, Scholars and Institutions needs to be improved based on consolidating and completing the RDF data of the downstream indexing services at DBLP and German National Library (DNB). 
 The holy grail of this effort will be to change the CEUR-WS single point of truth from the current HTML/PDF base to a workflow in which the metadata is mined from the proceedings matter. 
