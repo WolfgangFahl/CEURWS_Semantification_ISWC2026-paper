@@ -234,10 +234,10 @@ Section~\ref{sec:Metadata-first Publishing}.
 CEUR-WS has always been online only; there is no physical artefact and
 there never was. As discussed in Section~\ref{sec:FAIR}, the current
 Single Point of Truth encodes metadata in HTML and PDF optimized for
-printing and human display rather than for machine consumption. The
+printing and human display rather than for machine consumption. There has been good reason never to run any software such as a triplestore - static content is much more stable and safe than any infrastructure that needs maintainance. The
 Wikidata export makes it possible to query measurable metrics such as
 coverage and consistency. The \footnote{https://cvb.wikidata.dbis.rwth-aachen.de/wikidatasync}{public synchronization dashboard} is an
-example that makes the downstream indexing observable see Figure~\ref{fig:ceurspt_wikidata_sync}.
+example that makes the downstream indexing observable see Figure~\ref{fig:ceurspt_wikidata_sync}. 
 
 \subsection{Social: volunteer ecosystems across institutional boundaries}\label{sec:challenge_social}
 CEUR-WS editors, DBLP curators, DNB and TIB librarians, Wikidata and
@@ -360,23 +360,21 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
-\subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
-The structure of the semantified data is currently being consolidated in the public \texttt{semantify} repository through two open discussions: schema consolidation~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
-Furthermore, the CEUR-WS ontology is currently under development, with a first draft already available that covers all entity classes defined by the semantification challenge (see Figure~\ref{fig:ontology_schema_overview}).
-To maximize reusability and interoperability, we reused terms from established ontologies such as Dublin Core and Schema.org, and defined crosswalks to Wikidata and DBLP.
 
-A first draft is already productive: JSON-LD is generated for every
-volume, e.g.
-\url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}.
-The open design questions concern (i) the reuse of established
-vocabularies --- \texttt{schema.org}, Dublin Core and other vocabularies
-with significant uptake are preferred over bespoke terms, with
-mappings provided where necessary, (ii) the granularity of the model
-(e.g., session structure, distinction between joint proceedings and
-joint events) and (iii) tooling: creation of the JSON-LD from workshop
-website plus PDFs should be automated so that editors only curate the
-JSON-LD, and the HTML page is regenerated from it --- inverting the
-current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+
+\subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
+
+The CEUR-WS Proceedings Ontology formalizes the structure of the semantified data. 
+A first draft is already available and covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
+To maximize reusability and interoperability, terms from established ontologies such as Dublin Core and Schema.org are reused wherever appropriate, and crosswalks to Wikidata and DBLP are provided.
+The draft is already operational: JSON-LD representations are generated for every volume.\footnote{e.g.\ \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}}
+Ongoing schema consolidation is driven through two open discussions in the public \texttt{semantify} repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
+
+Four design questions remain open:
+(i)~the precise selection of vocabularies --- widely adopted ones such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary, though the choice is still under discussion for several entity types;
+(ii)~the granularity of the model, in particular the representation of session structure and the distinction between joint proceedings and joint events; and
+(iii)~tooling --- generation of the JSON-LD from the workshop website and PDFs should be automated so that editors curate only the JSON-LD and the HTML page is regenerated from it, inverting the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+(iv))~SHACL --- SHACL generation from the ontology
 
 \begin{figure}[t]
     \centering
@@ -384,6 +382,8 @@ current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
     \caption{Overview of the proposed CEUR-WS Proceedings ontology}
     \label{fig:ontology_schema_overview}
 \end{figure}
+
+
 \section{Lessons Learned}\label{sec:LessonsLearned}
 \subsection{Queries as first-class citizens}
 The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{If you can not query it it does not exist} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries. Having the queries as named parameterized technology independent entities themselves is helpful ~\cite{snapquery}. Nielsen's  Synia ~\cite{NielsenSynia2023} approach shows a lightweight application of this idea. 
