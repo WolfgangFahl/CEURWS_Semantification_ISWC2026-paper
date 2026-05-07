@@ -84,11 +84,11 @@ SIB Swiss Institute of Bioinformatics, Switzerland}
 \authorrunning{Wolfgang Fahl et al.}
 \maketitle
 \begin{abstract}
-CEUR Workshop Proceedings (CEUR-WS) has been a non-profit publisher for scientific workshop and conference proceedings since 1995. For more than 30 years it has used HTML and PDF as the single source of truth for the metadata required by indexers such as DBLP and the German national library DNB. Scholars have long craved persistent identifiers for the core entities involved: event series, events, proceedings, papers, editors, authors, institutions, and publishers, with the goal of allowing semantic handling and querying with modern tools.
+CEUR Workshop Proceedings (CEUR-WS) has been a non-profit publisher for scientific workshop and conference proceedings since 1995. For more than 30 years, it has used HTML and PDF as the single source of truth for the metadata required by indexers such as DBLP and the German national library DNB. Scholars have long requested persistent identifiers for the core entities involved: event series, events, proceedings, papers, editors, authors, institutions, and publishers, with the goal of allowing semantic handling and querying with state-of-the-art tools.
 
-In this work we show how we enabled the semantification using Wikidata as the target knowledge graph infrastructure. The 2015 Semantic Publishing Challenge queries are finally permanently available with up-to-date metadata. The Scholia portal provides aspect-oriented and user-friendly access and is widely used.
+In this work, we show how we enabled the semantification using Wikidata as the target knowledge graph infrastructure. The 2015 Semantic Publishing Challenge queries are finally permanently available with up-to-date metadata. The Scholia portal provides user-friendly and aspect-oriented access and is widely used.
 
-We further point out the challenges of aligning the digital, social, and physical aspects of the ongoing transformation and outline a roadmap to use the available queries to bootstrap a new RDF-based metadata-first publishing approach that will mine metadata from proceedings matter and generate the HTML from it instead of the other way around.
+We also point out the challenges of aligning the digital, social, and physical aspects of the ongoing transformation and outline a roadmap to use the available queries to bootstrap a new RDF-based metadata-first publishing approach that will mine metadata from proceedings matter and generate the HTML from it instead of the other way around.
 
 \end{abstract}
 \keywords{Knowledge Graph \and Linked Data \and Metadata Extraction \and Publishing \and Semantic Web \and Wikidata}
@@ -107,8 +107,18 @@ We further point out the challenges of aligning the digital, social, and physica
     \caption{SWAT4HCLS2024 example graph walk}
     \label{fig:swat4hcls_2024_instance}
 \end{figure}
-
-Traditional publishing workflows often handle the metadata of the needed core entities (as shown in Figure~\ref{fig:core_entities}) in an unFAIR way, giving low priority to the Findable, Accessible, Interoperable, and Reusable (FAIR) ~\ref{sec:FAIR}, Single Point of Truth (SPoT), and Single Source of Truth (SSoT) principles. Therefore the opportunities to collect the metadata during the  lifecyle of an event ~\cite{FahlHOD23} are missed. As technical editors of CEUR-WS we have been feeling this pain for over a decade. This work shows how the HTML/PDF SSoT of CEUR-WS at the ceur-ws.org domain (SPoT) has been used to create a Knowledge Graph representation of the relevant entities in Wikidata between 2022 and 2026 as a step in this direction, thus allowing portals such as Scholia to present the RDF query results in an aspect-oriented and user-friendly way.
+Traditional publishing workflows often handle the metadata of the
+required core entities (cf.\ Figure~\ref{fig:core_entities}) in a
+manner that does not comply with the Findable, Accessible,
+Interoperable and Reusable (FAIR) principles\footnote{we refer to
+such workflows as \tquote{unFAIR}; see Section~\ref{sec:FAIR}},
+giving low priority to these principles as well as to the Single
+Source of Truth (SSoT) and Single Point of Truth (SPoT) principles
+of data management~\cite{Queiroz_2024}. In this work SSoT
+refers to the one authoritative source from which metadata originates,
+whereas SPoT refers to the one authoritative location at which that
+metadata is accessed by downstream consumers.
+Therefore, the opportunities to collect the metadata during the  lifecyle of an event ~\cite{FahlHOD23} are missed. As technical editors of CEUR-WS we have been feeling this pain for over a decade. This work shows how the HTML/PDF SSoT of CEUR-WS at the ceur-ws.org domain (SPoT) has been used to create a Knowledge Graph representation of the relevant entities in Wikidata between 2022 and 2026 as a step in this direction, thus allowing portals such as Scholia to present the RDF query results in an aspect-oriented and user-friendly way.
 
 \subsection{CEUR Workshop Proceedings}
 Since 1995 CEUR Workshop Proceedings (CEUR-WS) (https://ceur-ws.org/) has published more than 4,200 Volumes and over 90,000 papers as a free online service for publishing proceedings of scientific workshops (and smaller conferences) in computer science, operated by a team of unpaid volunteers.
@@ -117,19 +127,21 @@ Technically, all data and metadata of the proceedings are directly represented a
 
 The metadata is available after some delay of weeks or months through indexing services such as DBLP~\cite{Ley2009} and K10plus~\cite{k10plus2019}\footnote{\url{https://dblp.org/}, \url{https://opac.k10plus.de}} and at the archive of the TIB \url{https://www.tib.eu/}.
 
-After multiple unfinished attempts to make the metadata of the CEUR-WS platform available for semantic analysis and querying we report on the successful use of Wikidata and Scholia as the knowledge graph platform to provide FAIR metadata.
+After multiple unfinished attempts to make the metadata of the CEUR-WS platform available for semantic analysis and querying, we report on the successful use of Wikidata and Scholia as the knowledge graph platform to provide FAIR metadata.
 
-Doing so was harder than one would expect - the devil is in the details.
+The effort required was substantially higher than initially anticipated,
+as a number of non-trivial edge cases in the legacy metadata had to be
+resolved individually.
 
 % https://cr.bitplan.com/index.php/CEUR-WS_Versions
 \subsection{Contributions of this Paper}
-The core contributions presented in this work are:
+The core contributions presented in this work are as follows:
 \begin{enumerate}
-    \item To provide the tools, infrastructure and approaches to consistently supply high quality FAIR metadata (Semantification) for CEUR-WS as detailed in section ~\ref{sec:Semantification}.
+    \item To provide the tools, infrastructure, and approaches to consistently supply high quality FAIR metadata (Semantification) for CEUR-WS as detailed in section ~\ref{sec:Semantification}.
 
-    \item Splitting the metadata for the three main entities: Event, Event Series and Proceedings as a major step towards improving the metadata quality and FAIRness.
+    \item Splitting the metadata for the three main entities: Event, Event Series, and Proceedings is a major step towards improving the metadata quality and FAIRness.
 
-    \item Providing a bootstrapping~\cite{Bardini2001,Engelbart2007} approach to shift the single point of truth from the current HTML/PDF files to a RDF ready ontology based format as outlined in ~\ref{sec:single_point_of_truth_bootstrapping}.
+    \item Providing a bootstrapping approach~\cite{Bardini2001,Engelbart2007} to shift the single point of truth from the current HTML/PDF files to a RDF ready ontology based format as outlined in ~\ref{sec:single_point_of_truth_bootstrapping}.
 
 \end{enumerate}
 
@@ -138,7 +150,7 @@ These contributions are valuable for other publishing use cases that struggle wi
 \section{From Semantic Publishing Challenge 2014 via Text2KG~2023 to Production 2026}\label{sec:SemantificationStory}
 The Semantic Publishing Challenge ~\cite{Lange2014,DiIorio2015,Ronzano_2014} started in 2014 with Task~1 calling for \tquote{answering queries related to the quality of workshops by computing metrics from data extracted from their proceedings, also considering information about persons and events}.
 
-The relevance of the original set of 20 queries for Task~1 was subjectively rated by us, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and the 5 queries Q1.5, Q1.12, Q1.13, Q1.16 and Q1.17 that rely on the main index have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop ~\cite{FahlHOD23}.
+The relevance of the original set of 20 queries for Task~1 was subjectively rated by us, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and the 5 queries Q1.5, Q1.12, Q1.13, Q1.16, and Q1.17 that rely on the main index have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop ~\cite{FahlHOD23}.
 The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge\_Queries}{SPARQL queries} are available as named parameterized queries. The snapquery project ~\cite{snapquery} was motivated by this set of queries and was a candidate middleware for the Scholia project ~\cite{Willighagen2026Scholia}. 
 
 \section{CEUR-WS Semantification in Wikidata}\label{sec:Semantification}
@@ -157,9 +169,9 @@ Figure~\ref{fig:ceurmake_workflow} gives an overview of the CEUR-WS Semantificat
 % FAIR Data as a basis for Knowledge Graphs
 The FAIR principles~\cite{GOFAIR2019,Wilkinson2016} with Persistent Identifiers (PIDs) and rich metadata as core components are being adopted by an increasing number of publishing organizations.
 
-To make CEUR-WS metadata FAIR a set of relevant queries should be supported, as derived from the original set of queries of the 2014 Semantic publishing challenge as outlined in Section~\ref{sec:SemantificationStory}.
+To make CEUR-WS metadata FAIR, a set of relevant queries should be supported, as derived from the original set of queries of the 2014 Semantic publishing challenge as outlined in Section~\ref{sec:SemantificationStory}.
 The metadata should be provided following an ontology that is based on established ontologies.
-The manual and automatic curation of entries should be possible with public access for all stakeholders, e.g., editors, authors, organizers, publishers and indexers.
+The manual and automatic curation of entries should be possible with public access for all stakeholders, e.g., editors, authors, organizers, publishers, and indexers.
 The infrastructure should be stable and there should be sufficient trust in its long-term availability
 An open source non-profit infrastructure is preferred since this is also the mode of operation of CEUR-WS.
 
@@ -167,49 +179,36 @@ Given the HTML/PDF/text input of CEUR-WS, the corresponding Knowledge Graph need
 
 Both the HTML and PDF encoding of the original scientific content are structured for the purpose of optimizing the display / output on paper or screens; therefore, there is a structure loss compared to what was originally available in the text document processor files that the authors might have been using~\cite{Fahl2023HSP}.  Most scholars are not aware of this loss in the daily use of published content just because the documents are optimized for display and human consumption~\cite{Yu2020,Ansorge_2021}. For the metadata extraction and use in knowledge graphs the difference is sometimes disastrous, e.g., when a simple text from a PDF document can not be extracted any more due to exotic styling and formatting or simply because only a scanned graphic image version of an older document is available that needs optical character recognition to extract the textual content.
 
-The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been \footnotelink{https://cr.bitplan.com/index.php/CEUR-WS\_Versions}{33 different versions} of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor, undocumented differences even within these versions. The usage of the different page versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
+The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been \footnotelink{https://cr.bitplan.com/index.php/CEUR-WS\_Versions}{33 different versions} of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor undocumented differences even within these versions. The usage of the different page versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
 
 \subsection{Extracting metadata from HTML and PDF targeting Wikidata}
-The pyCEURmake ~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages vastly improving on the earlier simple scraper by Nielsen ~\cite{Nielsen2021}.
+The pyCEURmake~\cite{pyCEURmake} tool was created to parse the main HTML index as well as the individual proceedings HTML pages vastly improving on the earlier simple scraper by Nielsen ~\cite{Nielsen2021}.
 The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the geograpy3 library~\cite{geograpy3}. Author, Editor and Paper details have been aligned with the DBLP SPARQL endpoint.
 
-Cermine ~\cite{Tkaczyk_2015} and GROBID \cite{Lopez_2009} have been run on the papers to provide additional metadata references.
+Cermine ~\cite{Tkaczyk_2015} and GROBID \cite{Lopez_2009} have been run on the papers to provide additional metadata references. Figure~\ref{fig:ceurspt_wikidata_sync}) shows a user friendly presentation of the data mined by these steps.
 
-For each core entity we analyzed the availability of Wikidata properties by using our wdgrid analysis tool ~\cite{wdgrid} ~\cite{FahlHW0D22}. This tool also generates naive or sophisticated SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge. 
+For each core entity, we analyzed the availability of Wikidata properties by using our wdgrid analysis tool ~\cite{wdgrid} ~\cite{FahlHW0D22}. This tool also generates naive or sophisticated SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge. 
 
-snapquery ~\cite{snapquery} was used to make sure the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
+snapquery ~\cite{snapquery} was used to make sure that the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
 
 The ceur-spt prototype~\cite{ceur-spt} demonstrates the benefits of
-semantification by improved linking and navigation capabilities compared
+semantification by improving linking and navigation capabilities compared
 to the current static CEUR-WS HTML pages. A complete Cermine run has
 been integrated so that paper-level metadata (authors, affiliations,
-references) is available through the same interface that replicates the
-CEUR-WS index (Figure~\ref{fig:ceurspt_index}). Per-volume pages expose
-the consolidated metadata of each proceedings entry, as illustrated for
-Vol-3262 in Figures~\ref{fig:ceurspt_vol3262_sample}
-and~\ref{fig:ceurspt_vol3262_detail}.
+references) is available in the per-volume pages as illustrated for
+Vol-3262 in Figure~\ref{fig:ceurspt_vol3262_detail}.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{images/meeting_ceurspt_index_screenshot.png}
-    \caption{ceur-spt index page at
-    \url{https://ceurspt.wikidata.dbis.rwth-aachen.de/index.html} showing
-    the re-synchronized CEUR-WS proceedings listing with a complete
-    Cermine run.}
-    \label{fig:ceurspt_index}
-\end{figure}
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{images/meeting_ceurspt_vol3262_sample.png}
-    \caption{CEUR-WS Volume 3262 Wikidata Workshop 2022 example with rich detail links }
-    \label{fig:ceurspt_vol3262_sample}
+    \includegraphics[width=\linewidth]{images/meeting_ceurspt_wikidata_sync.png}
+    \caption{CEUR Volume Browser wikidata synchronization with downstream dblp and k10plus coverage}
+    \label{fig:ceurspt_wikidata_sync}
 \end{figure}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{images/meeting_ceurspt_vol3262_detail.png}
-    \caption{Detail excerpt of the Vol-3262 ceur-spt page: structured
+    \caption{Vol-3262 ceur-spt page: structured
     paper-level metadata derived from the HTML index and PDF mining
     pipeline.}
     \label{fig:ceurspt_vol3262_detail}
@@ -221,7 +220,7 @@ volunteer editors, and serves a scholarly community of editors, authors
 and research institutions. Downstream indexing activities are handled
 by DBLP, the German National Library (DNB), TIB, Wikidata/WikiCite and
 the Scholia community. This section describes the challenges of
-aligning the digital, social and physical aspects, given that
+aligning the digital, social, and physical aspects, since
 traditional proceedings are still printed on paper and stored on book
 shelves in libraries.
 
@@ -237,7 +236,7 @@ Single Point of Truth encodes metadata in HTML and PDF optimized for
 printing and human display rather than for machine consumption. The
 Wikidata export makes it possible to query measurable metrics such as
 coverage and consistency. The \footnote{https://cvb.wikidata.dbis.rwth-aachen.de/wikidatasync}{public synchronization dashboard} is an
-example that makes the downstream indexing observable.
+example that makes the downstream indexing observable see Figure~\ref{fig:ceurspt_wikidata_sync}.
 
 \subsection{Social: volunteer ecosystems across institutional boundaries}\label{sec:challenge_social}
 CEUR-WS editors, DBLP curators, DNB and TIB librarians, Wikidata and
@@ -282,7 +281,7 @@ endpoint at
 \url{https://scholia.toolforge.org/event/Q124669329} and by the post
 graph-split QLever endpoint~\cite{Bast2017,Willighagen2026Scholia} at
 \url{https://qlever.scholia.wiki/event/Q124669329}, illustrated for
-SWAT4HCLS~2024 (\wdq{Q124669329}{Q124669329}). All 12 panels survived the
+ \wdq{SWAT4HCLS~2024}{Q124669329}. All 12 panels survived the
 2025 Wikidata graph split unchanged; only the underlying engine and the
 SPARQL dialect (1.1 compliant) differ.
 
@@ -325,7 +324,7 @@ Since the CEUR-WS Wikidata bot was activated the community members contributed t
 
 Figure~\ref{fig:wikicite_proceedings_editors}
 shows the distribution of Wikidata editors who have created or revised
-CEUR-WS \textit{proceedings} items (\wdq{Q1143604}{Q1143604}). The long-tail
+CEUR-WS \textit{proceedings} items (\wdq{conference proceedings}{Q1143604}). The long-tail
 distribution illustrates that while the officially approved
 \textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of
 systematic mass contributions, a broad community of individual WikiCite
@@ -369,7 +368,7 @@ all diagrams are maintained in the CR research wiki~\cite{Fahl_CR_Wiki}.
 
 A first draft is already productive: JSON-LD is generated for every
 volume, e.g.
-\url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld?include_errors=false}.
+\url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}.
 The open design questions concern (i) the reuse of established
 vocabularies --- \texttt{schema.org}, Dublin Core and other vocabularies
 with significant uptake are preferred over bespoke terms, with
@@ -405,7 +404,7 @@ print publishers that have to provide a copy of the proceedings to the German Na
 according to German law.
 Consent, Public Data, and Contractual Necessity are crucial for
 scholarly publishing.
-\subsection{Iterative introduction beats big bang}
+\subsection{Incremental migration over one-shot replacement}
 The challenge in introducing the new CEUR-WS workflow is to find a sweet spot between effort and benefit~\cite{Pohl2015-vj}. Given the long-tail distribution of issues of ever more corner and exotic cases that have shown up in the analysis of the existing data and workflow there is potentially a huge list of \tquote{small} problems that would require an inadequately high amount of effort to be solved systematically. The \tquote{sweet spot} is in solving only the most relevant problems and not fixing some of the exotic details at all or doing it manually. Therefore we will avoid a \tquote{big bang} introduction, which would replace the old approach in one single big (and therefore very risky) step.
 Instead we propose to do smaller changes gradually. As a first step, the main index.html shall be split by years (with a link to the old legacy complete list). Then, the per-year list may be generated from the single point of truth data. This will be continued iteratively, going from the current year back to a point where it seems no longer reasonable to spend further effort.
 
@@ -422,8 +421,8 @@ A first bootstrapping prototype of this year-split is already available
 \end{figure}
 \section{Roadmap: Metadata first Publishing}\label{sec:Metadata-first Publishing}
 The coverage of the core entities Event Series, Papers, Scholars and Institutions needs to be improved based on consolidating and completing the RDF data of the downstream indexing services at DBLP and German National Library (DNB). 
-The holy grail of this effort will be to change the CEUR-WS single point of truth from the current HTML/PDF base to a workflow in which the metadata is mined from the proceedings matter. 
-The move of the CEUR-WS infrastructure from RWTH Aachen to Gesellschaft für Informatik in 2026 is an opportunity to make further steps in this direction. The CEUR-WS semantify project ~\cite{CEUR-WSSemantify2026} is the open source effort pursuing this goal. 
+The central long-term objective of this effort is to shift the CEUR-WS single point of truth from the current HTML/PDF artefacts to a workflow in which the metadata is mined from the proceedings matter and rendered artefacts are generated from it. 
+The 2026 migration of the CEUR-WS infrastructure from RWTH Aachen to Gesellschaft f\"ur Informatik provides the opportunity to take further concrete steps in this direction. The open-source CEUR-WS semantify project ~\cite{CEUR-WSSemantify2026} coordinates this work.
 
 \subsection{Community proposals for the future workflow}\label{sec:future_workflow}
 Several complementary proposals have been provided during the timeframe of this work:
@@ -457,6 +456,24 @@ moves from RWTH Aachen to Gesellschaft f\"ur Informatik in 2026.
 
 \section{Conclusion}\label{sec:Conclusion}
 CEUR-WS proceedings metadata is systematically made available in Wikidata via the CEUR-WS bot. The relevant Task~1 Named Parameterized Queries of the Semantic Publishing Challenge of 2014/2015 are now available on different endpoints namely the  SPARQL1.1 compatible QLever endpoint. The Scholia portal provides production access to queries based on and extending this set. The Wikidata, WikiCite, Scholia and CEUR-WS stakeholder communities have appreciated and contributed to this work.
+
+\subsection{Limitations}\label{sec:Limitations}
+The contributions reported here are subject to several limitations.
+First, Wikidata coverage is currently complete for the \emph{proceedings}
+and \emph{event} entities only; items for papers, scholars,
+institutions and event series rely on complementary community
+curation and are therefore not uniformly complete. Second, the
+reconciliation pipeline depends on the availability and quality of
+external endpoints (DBLP, K10plus, geograpy3); degradation or
+schema changes in these sources propagate into the pipeline.
+Third, roughly 20\,\% of CEUR-WS volumes are not yet indexed by
+DBLP, which limits editor and author disambiguation for that subset.
+Fourth, the current Single Point of Truth remains the legacy HTML/PDF
+representation; the metadata-first workflow outlined in
+Section~\ref{sec:Metadata-first Publishing} has not yet replaced it
+in production. Finally, generalisation beyond CEUR-WS to other
+publishers has not been empirically evaluated and is left for future
+work.
 
 \subsection{Supplemental Material Statement} Source code for the prototypes and semantification tools is available via the repositories of the
 \footnotelink{https://github.com/ceurws}{github ceurws organization}. Extended supplemental material --- including the schema diagrams (Figures~\ref{fig:core_entities} and~\ref{fig:swat4hcls_2024_instance}) in their editable Graphviz form, the SPARQL queries derived from the Semantic Publishing Challenge, and background research --- is provided by the CR research wiki~\cite{Fahl_CR_Wiki}.
