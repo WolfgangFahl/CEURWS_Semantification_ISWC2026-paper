@@ -1,3 +1,5 @@
+% This work is open source at https://github.com/WolfgangFahl/CEURWS_Semantification_ISWC2026-paper
+% see https://github.com/WolfgangFahl/CEURWS_Semantification_ISWC2026-paper/issues 
 % ISWC 2026 In-Use Track submission
 % Target: https://iswc2026.semanticweb.org/#/calls/in-use
 %
@@ -67,7 +69,7 @@
 \newcommand{\wdqTable}[2]{\href{https://www.wikidata.org/wiki/#2}{#1 (#2)}}
 
 %% Article Info
-\title{Semantified CEUR-WS in Wikidata}
+\title{Semantified CEUR-WS proceedings publishing in Wikidata knowledge graph}
 \author{Wolfgang Fahl\inst{1}\orcidID{0000-0002-0821-6995} \and
 Tim Holzheim\inst{1,2}\orcidID{0000-0003-2533-6363} \and
 Christoph Lange\inst{1,2}\orcidID{0000-0001-9879-3827} \and
@@ -133,7 +135,7 @@ The core contributions presented in this work are:
 
 These contributions are valuable for other publishing use cases that struggle with the same pain points.
 
-\section{From Semantic Publishing Challenge 2015 via Text2KG2023 to Production 2026}\label{sec:SemantificationStory}
+\section{From Semantic Publishing Challenge 2014 via Text2KG~2023 to Production 2026}\label{sec:SemantificationStory}
 The Semantic Publishing Challenge ~\cite{Lange2014,DiIorio2015,Ronzano_2014} started in 2014 with Task~1 calling for \tquote{answering queries related to the quality of workshops by computing metrics from data extracted from their proceedings, also considering information about persons and events}.
 
 The relevance of the original set of 20 queries for Task~1 was subjectively rated by us, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and the 5 queries Q1.5, Q1.12, Q1.13, Q1.16 and Q1.17 that rely on the main index have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop ~\cite{FahlHOD23}.
@@ -180,13 +182,43 @@ snapquery ~\cite{snapquery} was used to make sure the queries are compatible wit
 ceur-spt ~\cite{ceur-spt} is the prototype for showing the benefits of semantification by improved linking and navigation capabilities compared to the current static CEUR-WS HTML page.
  
 \section{In-Use: Community Impact - WikiCite, Scholia, CEUR-WS }\label{sec:Community Impact}
+
 WikiCite is an initiative to create a bibliographic database based on Wikidata  ~\cite{WikiCite}. 
 
-Scholia ~\cite{Nielsen2017} is a portal serving wikidata content for the needs of scholars. It is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples that form the main graph belong to scholarly articles and their linked entities. The Wikimedia foundation needed to perform a graph split due to a 4 Terabyte maximum storage limit of the Blazegraph backend in use. The Scholia community decided to use QLever ~\cite{Bast2017} as the new backend and make all queries SPARQL1.1 compliant ~\cite{Willighagen2026Scholia}.
+Scholia ~\cite{Nielsen2017} is a portal serving wikidata content for the needs of scholars. 
+
+WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100,000 distinct authors and over 6,500 distinct editors with digital traces in the DBLP CEUR-WS index entries. 
+
+\subsection{Scholia}
+It is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples that form the main graph belong to scholarly articles and their linked entities. The Wikimedia foundation needed to perform a graph split due to a 4 Terabyte maximum storage limit of the Blazegraph backend in use. The Scholia community decided to use QLever ~\cite{Bast2017} as the new backend and make all queries SPARQL1.1 compliant ~\cite{Willighagen2026Scholia}.
 Note that before the graph split there was a hold on adding more scholarly articles to Wikidata which was the reason we did not mass-insert CEUR-WS paper metadata yet.
 Writes to Wikidata are performed through the officially approved bot account \textit{User:CEUR-WS}~\cite{CEURWSBot}, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
 
-WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100,000 distinct authors and over 6,500 distinct editors with digital traces in the DBLP CEUR-WS index entries. Since the CEUR-WS Wikidata bot was activated the community members contributed to the bot created entries. 
+
+\subsection{WikiCite}
+\label{sec:wikicite}
+WikiCite~\cite{WikiCite} provides the bibliographic backbone on which
+CEUR-WS metadata is contributed to Wikidata. Figure~\ref{fig:wikicite_proceedings_editors}
+shows the distribution of Wikidata editors who have created or revised
+CEUR-WS \textit{proceedings} items (\wdq{Q1143604}{Q1143604}). The long-tail
+distribution illustrates that while the officially approved
+\textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of
+systematic mass contributions, a broad community of individual WikiCite
+editors continuously curates, corrects and enriches the proceedings
+metadata. This overlap of bot-driven bulk ingestion and human community
+curation is a core strength of the WikiCite approach and a prerequisite
+for the Scholia panels discussed in Section~\ref{sec:wikicite} below.
+The plot was generated with
+\texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the
+revision history of all CEUR-WS proceedings items on Wikidata.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/distribution_of_proceedings_community_editors.png}
+    \caption{Distribution of WikiCite community editors contributing to
+    CEUR-WS proceedings items (\wdq{Q1143604}{Q1143604}) on Wikidata.}
+    \label{fig:wikicite_proceedings_editors}
+\end{figure}
 
 \subsection{Scholia}
 Table ~\ref{tab:scholia_event_panels}
@@ -231,6 +263,35 @@ Figure \ref{fig:swat4hcls_2024_coauthor_graph} shows the user-friendly display o
     \caption{SWATH4HCLS 2024 Coauthor graph visualization}
     \label{fig:swat4hcls_2024_coauthor_graph}
 \end{figure}
+
+\subsection{WikiCite}
+\label{sec:wikicite}
+WikiCite~\cite{WikiCite} provides the bibliographic backbone on which
+CEUR-WS metadata is contributed to Wikidata. 
+Since the CEUR-WS Wikidata bot was activated the community members contributed to the bot created entries. 
+
+Figure~\ref{fig:wikicite_proceedings_editors}
+shows the distribution of Wikidata editors who have created or revised
+CEUR-WS \textit{proceedings} items (\wdq{Q1143604}{Q1143604}). The long-tail
+distribution illustrates that while the officially approved
+\textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of
+systematic mass contributions, a broad community of individual WikiCite
+editors continuously curates, corrects and enriches the proceedings
+metadata. This overlap of bot-driven bulk ingestion and human community
+curation is a core strength of the WikiCite approach and a prerequisite
+for the Scholia panels discussed in Section~\ref{sec:wikicite} below.
+The plot was generated with
+\texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the
+revision history of all CEUR-WS proceedings items on Wikidata.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/distribution_of_proceedings_community_editors.png}
+    \caption{Distribution of WikiCite community editors contributing to
+    CEUR-WS proceedings items (\wdq{Q1143604}{Q1143604}) on Wikidata.}
+    \label{fig:wikicite_proceedings_editors}
+\end{figure}
+
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
 \section{Lessons Learned}\label{sec:LessonsLearned}
