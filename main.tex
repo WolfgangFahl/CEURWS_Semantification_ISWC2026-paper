@@ -190,37 +190,11 @@ Scholia ~\cite{Nielsen2017} is a portal serving wikidata content for the needs o
 WikiCite, Wikidata, Scholia and the CEUR-WS stakeholder community are overlapping communities. There are over 100,000 distinct authors and over 6,500 distinct editors with digital traces in the DBLP CEUR-WS index entries. 
 
 \subsection{Scholia}
+\label{sec:scholia_inuse}
 It is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples that form the main graph belong to scholarly articles and their linked entities. The Wikimedia foundation needed to perform a graph split due to a 4 Terabyte maximum storage limit of the Blazegraph backend in use. The Scholia community decided to use QLever ~\cite{Bast2017} as the new backend and make all queries SPARQL1.1 compliant ~\cite{Willighagen2026Scholia}.
 Note that before the graph split there was a hold on adding more scholarly articles to Wikidata which was the reason we did not mass-insert CEUR-WS paper metadata yet.
 Writes to Wikidata are performed through the officially approved bot account \textit{User:CEUR-WS}~\cite{CEURWSBot}, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
 
-
-\subsection{WikiCite}
-\label{sec:wikicite}
-WikiCite~\cite{WikiCite} provides the bibliographic backbone on which
-CEUR-WS metadata is contributed to Wikidata. Figure~\ref{fig:wikicite_proceedings_editors}
-shows the distribution of Wikidata editors who have created or revised
-CEUR-WS \textit{proceedings} items (\wdq{Q1143604}{Q1143604}). The long-tail
-distribution illustrates that while the officially approved
-\textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of
-systematic mass contributions, a broad community of individual WikiCite
-editors continuously curates, corrects and enriches the proceedings
-metadata. This overlap of bot-driven bulk ingestion and human community
-curation is a core strength of the WikiCite approach and a prerequisite
-for the Scholia panels discussed in Section~\ref{sec:wikicite} below.
-The plot was generated with
-\texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the
-revision history of all CEUR-WS proceedings items on Wikidata.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.85\linewidth]{images/distribution_of_proceedings_community_editors.png}
-    \caption{Distribution of WikiCite community editors contributing to
-    CEUR-WS proceedings items (\wdq{Q1143604}{Q1143604}) on Wikidata.}
-    \label{fig:wikicite_proceedings_editors}
-\end{figure}
-
-\subsection{Scholia}
 Table ~\ref{tab:scholia_event_panels}
 shows 12 SPARQL-driven panels on the Scholia event
 aspect~\cite{Nielsen2017}.
@@ -279,18 +253,30 @@ systematic mass contributions, a broad community of individual WikiCite
 editors continuously curates, corrects and enriches the proceedings
 metadata. This overlap of bot-driven bulk ingestion and human community
 curation is a core strength of the WikiCite approach and a prerequisite
-for the Scholia panels discussed in Section~\ref{sec:wikicite} below.
+for the Scholia panels discussed in Section~\ref{sec:scholia_inuse} above.
 The plot was generated with
 \texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the
 revision history of all CEUR-WS proceedings items on Wikidata.
-
+% ceur-wd-contributions --plot /tmp/ceur_charts --progress
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.85\linewidth]{images/distribution_of_proceedings_community_editors.png}
     \caption{Distribution of WikiCite community editors contributing to
-    CEUR-WS proceedings items (\wdq{Q1143604}{Q1143604}) on Wikidata.}
+    CEUR-WS proceedings items on Wikidata.}
     \label{fig:wikicite_proceedings_editors}
 \end{figure}
+\subsection{CEUR-WS stakeholders}
+\label{sec:ceurws_stakeholders}
+The CEUR-WS bot~\cite{CEURWSBot} currently exports \textit{proceedings}
+and \textit{event} items only. Items for the related entities event
+series, paper, scholar and institution are created and edited by the
+CEUR-WS stakeholders that are active in the Wikidata community. The
+SWAT4HCLS~2024 case has already been presented in
+Section~\ref{sec:Introduction} (graph walk,
+Figure~\ref{fig:swat4hcls_2024_instance}) and in
+this Section~\ref{sec:Community Impact} (Scholia panels,
+Table~\ref{tab:scholia_event_panels} and
+Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
