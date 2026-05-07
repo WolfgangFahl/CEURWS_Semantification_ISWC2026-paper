@@ -383,9 +383,7 @@ current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
 \begin{figure}[t]
     \centering
     \includegraphics[width=\linewidth]{images/meeting_ontology_schema_overview.png}
-    \caption{Overview of the proposed CEUR-WS Proceedings ontology.
-    Clickable SVG:
-    \url{https://cr.bitplan.com/images/diagrams/Diagrams_ae053eec812cc103f43357e5348a8737.svg}.}
+    \caption{Overview of the proposed CEUR-WS Proceedings ontology}
     \label{fig:ontology_schema_overview}
 \end{figure}
 \section{Lessons Learned}\label{sec:LessonsLearned}
@@ -426,6 +424,36 @@ A first bootstrapping prototype of this year-split is already available
 The coverage of the core entities Event Series, Papers, Scholars and Institutions needs to be improved based on consolidating and completing the RDF data of the downstream indexing services at DBLP and German National Library (DNB). 
 The holy grail of this effort will be to change the CEUR-WS single point of truth from the current HTML/PDF base to a workflow in which the metadata is mined from the proceedings matter. 
 The move of the CEUR-WS infrastructure from RWTH Aachen to Gesellschaft für Informatik in 2026 is an opportunity to make further steps in this direction. The CEUR-WS semantify project ~\cite{CEUR-WSSemantify2026} is the open source effort pursuing this goal. 
+
+\subsection{Community proposals for the future workflow}\label{sec:future_workflow}
+Several complementary proposals have been provided during the timeframe of this work:
+\begin{itemize}
+    \item \emph{Author-driven metadata entry}: Michael Cochez proposes
+    re-using the \texttt{ceur-ws-prototype}~\cite{CEURWSPrototype},
+    inspired by \texttt{ceur-make-ui}~\cite{CEURMakeUI}, with a simple
+    HTML form so that authors enter their own metadata, thus automating
+    volume creation and reducing editor workload.
+    \item \emph{Automated extraction and compliance checking}: Jerven
+    Bolleman proposes automating metadata/PDF extraction, index
+    generation and CEUR compliance checks using
+    \texttt{ceur-index-html-helper}~\cite{CEURIndexHTMLHelper}, already
+    applied to generate
+    \url{https://www.jerven.eu/swat4hcls-proceedings-2026/}.
+    \item \emph{SPT-first research prototype}: the authors propose
+    making the ceur-spt backend fully functional first and only then
+    adding the frontend, following the \texttt{SemPubFlow} prototype
+    approach.
+    \item \emph{Historical context}: the 2019 XML-based proposal by
+    Sarven Capadisli and the ESWC~2022 background discussion by
+    Nathanael Arndt are acknowledged as previous ideas and work.
+\end{itemize}
+
+Next steps to be agreed with the editorial board include bringing all
+prototypes onto a shared beta server (currently being set up at GI),
+preparing a DOI proposal (with a handful of showcase volumes and
+leveraging the ca.~60,000 DBLP-covered papers), and clarifying
+long-term maintenance responsibilities as the CEUR-WS infrastructure
+moves from RWTH Aachen to Gesellschaft f\"ur Informatik in 2026.
 
 \section{Conclusion}\label{sec:Conclusion}
 CEUR-WS proceedings metadata is systematically made available in Wikidata via the CEUR-WS bot. The relevant Task~1 Named Parameterized Queries of the Semantic Publishing Challenge of 2014/2015 are now available on different endpoints namely the  SPARQL1.1 compatible QLever endpoint. The Scholia portal provides production access to queries based on and extending this set. The Wikidata, WikiCite, Scholia and CEUR-WS stakeholder communities have appreciated and contributed to this work.
