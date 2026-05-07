@@ -69,7 +69,7 @@
 \newcommand{\wdqTable}[2]{\href{https://www.wikidata.org/wiki/#2}{#1 (#2)}}
 
 %% Article Info
-\title{Semantified CEUR-WS proceedings publishing in Wikidata knowledge graph}
+\title{Query-First Semantification of CEUR-WS Proceedings Metadata in Wikidata}
 \author{Wolfgang Fahl\inst{1}\orcidID{0000-0002-0821-6995} \and
 Tim Holzheim\inst{1,2}\orcidID{0000-0003-2533-6363} \and
 Christoph Lange\inst{1,2}\orcidID{0000-0001-9879-3827} \and
@@ -180,7 +180,53 @@ For each core entity we analyzed the availability of Wikidata properties by usin
 snapquery ~\cite{snapquery} was used to make sure the queries are compatible with different endpoints and do not only run on the official blazegraph based Wikidata query endpoint. 
 
 ceur-spt ~\cite{ceur-spt} is the prototype for showing the benefits of semantification by improved linking and navigation capabilities compared to the current static CEUR-WS HTML page.
- 
+
+\section{Challenges in Aligning the Digital, Social and Physical Aspects}\label{sec:Challenges}
+CEUR-WS is a digital-native, online-only publisher operated by
+volunteer editors, and serves a scholarly community of editors, authors
+and research institutions. Downstream indexing activities are handled
+by DBLP, the German National Library (GND), TIB, Wikidata/WikiCite and
+the Scholia community. This section describes the challenges of
+aligning the digital, social and physical aspects, given that
+traditional proceedings are still printed on paper and stored on book
+shelves in libraries.
+
+The three-way alignment is necessary to avoid cognitive dissonance in
+the discussions and decisions that are needed to support the
+metadata-first roadmap outlined in
+Section~\ref{sec:Metadata-first Publishing}.
+
+\subsection{Digital: CEUR-WS as a native online publisher}\label{sec:challenge_digital}
+CEUR-WS has always been online only; there is no physical artefact and
+there never was. As discussed in Section~\ref{sec:FAIR}, the current
+Single Point of Truth encodes metadata in HTML and PDF optimized for
+printing and human display rather than for machine consumption. The
+Wikidata export makes it possible to query measurable metrics such as
+coverage and consistency. The public synchronization dashboard at
+\url{https://cvb.wikidata.dbis.rwth-aachen.de/wikidatasync} is an
+example that makes the downstream indexing observable.
+
+\subsection{Social: volunteer ecosystems across institutional boundaries}\label{sec:challenge_social}
+CEUR-WS editors, DBLP curators, GND and TIB librarians, Wikidata and
+WikiCite contributors, and Scholia maintainers all operate as volunteer
+or mixed-funding communities, each with their own goals and procedures.
+Coordination across such communities is loosely coupled and based on
+the trust that what worked in the past will continue to do so in the
+future. Our work shows that there are gaps; for example, DBLP is
+currently indexing only about 80\,\% of all volumes.
+
+\subsection{Physical: library catalogues and the shelf model}\label{sec:challenge_physical}
+Library catalogues such as GND historically optimize for physical
+books --- proceedings that sit on a shelf. For a digital-native
+publisher there is a mismatch: the distinction between \emph{event},
+\emph{event series} and \emph{proceedings}, which the core-entity
+schema of this paper treats as three separate first-class entities
+(Figure~\ref{fig:core_entities}), is not covered adequately in library
+catalogues. Our effort to convince the DNB to systematically curate
+event series based on an existing concept in its ontology has so far
+been unsuccessful.
+
+
 \section{In-Use: Community Impact - WikiCite, Scholia, CEUR-WS }\label{sec:Community Impact}
 
 WikiCite is an initiative to create a bibliographic database based on Wikidata  ~\cite{WikiCite}. 
