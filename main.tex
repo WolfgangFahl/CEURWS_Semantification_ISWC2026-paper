@@ -362,9 +362,9 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 \label{sec:single_point_of_truth_bootstrapping}
 \subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
 The structure of the semantified data is currently being consolidated in the public \texttt{semantify} repository through two open discussions: schema consolidation~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
-Furthermore, the CEUR-WS ontology is currently under development, with a first draft already available that covers all entity classes defined by the semantification challenge.
+Furthermore, the CEUR-WS ontology is currently under development, with a first draft already available that covers all entity classes defined by the semantification challenge (see Figure~\ref{fig:ontology_schema_overview}).
 To maximize reusability and interoperability, we reused terms from established ontologies such as Dublin Core and Schema.org, and defined crosswalks to Wikidata and DBLP.
-Figure~\ref{fig:ontology_schema_overview} 
+
 A first draft is already productive: JSON-LD is generated for every
 volume, e.g.
 \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}.
@@ -403,7 +403,7 @@ print publishers that have to provide a copy of the proceedings to the German Na
 according to German law.
 Consent, Public Data, and Contractual Necessity are crucial for
 scholarly publishing.
-The legal basis and data-subject rights for publication of personal data of scholars by CEUR-WS are documented in the CEUR-WS privacy policy\footnote{\url{https://ceur-ws.org/privacy-dsgvo.html}} and tracked in the project issue tracker\footnotelink{https://github.com/ceurws/semantify/issues/11}{issue #11 of the ceur semantify project}.
+The legal basis and data-subject rights for publication of personal data of scholars by CEUR-WS are documented in the CEUR-WS privacy policy\footnote{\url{https://ceur-ws.org/privacy-dsgvo.html}} and tracked in the project issue tracker\footnotelink{https://github.com/ceurws/semantify/issues/11}{issue \#11 of the ceur semantify project}.
 \subsection{Incremental migration over one-shot replacement}
 The challenge in introducing the new CEUR-WS workflow is to find a sweet spot between effort and benefit~\cite{Pohl2015-vj}. Given the long-tail distribution of issues of ever more corner and exotic cases that have shown up in the analysis of the existing data and workflow there is potentially a huge list of \tquote{small} problems that would require an inadequately high amount of effort to be solved systematically. The \tquote{sweet spot} is in solving only the most relevant problems and not fixing some of the exotic details at all or doing it manually. Therefore we will avoid a \tquote{big bang} introduction, which would replace the old approach in one single big (and therefore very risky) step.
 Instead we propose to do smaller changes gradually. As a first step, the main index.html shall be split by years (with a link to the old legacy complete list). Then, the per-year list may be generated from the single point of truth data. This will be continued iteratively, going from the current year back to a point where it seems no longer reasonable to spend further effort.
