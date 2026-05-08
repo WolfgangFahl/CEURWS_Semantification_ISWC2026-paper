@@ -153,7 +153,17 @@ The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challen
 
 \section{CEUR-WS Semantification in Wikidata}\label{sec:Semantification}
 
-Figure~\ref{fig:ceurmake_workflow} gives an overview of the CEUR-WS Semantification workflow.
+This section describes how the CEUR-WS metadata is extracted from its
+HTML/PDF single point of truth into the Wikidata knowledge graph.
+Section~\ref{sec:FAIR} motivates the semantification from the
+perspective of the FAIR principles and derives the requirements on
+queries, ontologies, curation and infrastructure.
+Section~\ref{sec:Extracting metadata from HTML and PDF targeting Wikidata}
+then presents the concrete extraction pipeline built around
+\texttt{pyCEURmake}, Cermine, GROBID and \texttt{snapquery}, and the
+\texttt{ceur-spt} prototype that consumes the resulting graph.
+Figure~\ref{fig:ceurmake_workflow} gives an overview of the overall
+workflow.
 
 \begin{figure}
     \centering
@@ -180,6 +190,7 @@ Both the HTML and PDF encoding of the original scientific content are structured
 The metadata needed for creating the knowledge graph is only available in natural language/text form and follows rules that have been changed multiple times during the history of CEUR-WS. From 2013 to 2026, there have been \footnotelink{https://cr.bitplan.com/index.php/CEUR-WS\_Versions}{33 different versions} of the index file template with no proper tracing of what was changed from version to version. The index and volume HTML files were often edited manually, leading to minor undocumented differences even within these versions. The usage of the different versions follows a long-tail Zipfian distribution with 5 versions covering 60\% of all volumes.
 
 \subsection{Extracting metadata from HTML and PDF targeting Wikidata}
+\label{sec:Extracting metadata from HTML and PDF targeting Wikidata}
 pyCEURmake~\cite{pyCEURmake} was created to parse the main HTML index as well as the individual proceedings HTML pages, vastly improving on an earlier simple scraper~\cite{Nielsen2021}.
 The results have been cached in JSON and SQLite storage for quick access. Location entries have been consolidated using the geograpy3 library~\cite{geograpy3}. Author, Editor and Paper details have been aligned with the DBLP SPARQL endpoint.
 
@@ -258,7 +269,7 @@ been unsuccessful.
 
 \section{In-Use Impact -- WikiCite, Scholia, CEUR-WS}
 \label{sec:Community Impact}
-
+This section reports on the in-use impact of the CEUR-WS semantification in three overlapping communities.
 WikiCite is an initiative to create a bibliographic database based on Wikidata~\cite{WikiCite}. 
 
 Scholia~\cite{Nielsen2017} is a portal serving Wikidata content for the needs of scholars. 
@@ -308,7 +319,7 @@ SPARQL dialect (1.1 compliant) differ.
 Figure~\ref{fig:swat4hcls_2024_coauthor_graph} shows the user-friendly display of the coauthorship as graph visualization.
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{images/SWAT4HCLS2024-CoauthorGraphSnippet.png}
+    \includegraphics[width=0.8\linewidth]{images/SWAT4HCLS2024-CoauthorGraphSnippet.png}
     \caption{SWAT4HCLS 2024 co-author graph visualization}
     \label{fig:swat4hcls_2024_coauthor_graph}
 \end{figure}
@@ -319,27 +330,21 @@ WikiCite~\cite{WikiCite} provides the bibliographic backbone on which
 CEUR-WS metadata is contributed to Wikidata.
 Since the CEUR-WS Wikidata bot was activated, the community members contributed to the bot created entries. 
 
-Figure~\ref{fig:wikicite_proceedings_editors}
-shows the distribution of Wikidata editors who have created or revised
-CEUR-WS \textit{proceedings} items (\wdq{conference proceedings}{Q1143604}). The long-tail
-distribution illustrates that while the officially approved
-\textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of
-systematic mass contributions, a broad community of individual WikiCite
-editors continuously curates, corrects and enriches the proceedings
-metadata. This overlap of bot-driven bulk ingestion and human community
-curation is a core strength of the WikiCite approach and a prerequisite
-for the Scholia panels discussed in Section~\ref{sec:scholia_inuse} above.
-The plot was generated with
-\texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the
-revision history of all CEUR-WS proceedings items on Wikidata.
+Figure~\ref{fig:wikicite_proceedings_editors} shows the distribution of Wikidata editors who have created or revised CEUR-WS \textit{proceedings} items (\wdq{conference proceedings}{Q1143604}).
+The long-tail distribution illustrates that while the officially approved \textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of systematic mass contributions, a broad community of individual WikiCite editors continuously curates, corrects and enriches the proceedings metadata. 
+This overlap of bot-driven bulk ingestion and human community curation is a core strength of the WikiCite approach and a prerequisite for the Scholia panels discussed in Section~\ref{sec:scholia_inuse} above.
+The plot was generated with \texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the revision history of all CEUR-WS proceedings items on Wikidata.
 % ceur-wd-contributions --plot /tmp/ceur_charts --progress
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.85\linewidth]{images/wd_contribution/with_bots/Proceedings/editor_activity_histogram.png}
-    \caption{Distribution of WikiCite community editors contributing to
-    CEUR-WS proceedings items on Wikidata.}
+    \caption{Editor activity distribution across 4{,}174 CEUR-WS proceedings items
+    on Wikidata, showing the complementary roles of automated bulk ingestion and
+    targeted human curation of the WikiCite community (55 distinct editors, 21{,}405 total contributions).}
     \label{fig:wikicite_proceedings_editors}
 \end{figure}
+
+
 \subsection{CEUR-WS stakeholders}
 \label{sec:ceurws_stakeholders}
 The CEUR-WS bot~\cite{CEURWSBot} currently exports \textit{proceedings}
@@ -355,7 +360,14 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 
 \section{Single Point of Truth Bootstrapping}
 \label{sec:single_point_of_truth_bootstrapping}
-
+The work reported so far uses the CEUR-WS HTML/PDF artefacts as the
+single point of truth (SPoT) and derives the Wikidata knowledge graph
+from them.  This section outlines how that relationship is being
+inverted in a bootstrapping fashion~\cite{Bardini2001,Engelbart2007},
+so that a machine-readable, ontology-based representation becomes the
+SPoT and the HTML/PDF artefacts are generated from it.
+Section~\ref{sec:ontology} introduces a first draft of the CEUR-WS
+Proceedings Ontology. 
 
 \subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
 
@@ -374,7 +386,7 @@ Four design questions remain open.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{images/meeting_ontology_schema_overview.png}
+    \includegraphics[width=\linewidth]{images/ontology_schema_overview.png}
     \caption{Overview of the proposed CEUR-WS Proceedings ontology}
     \label{fig:ontology_schema_overview}
 \end{figure}
