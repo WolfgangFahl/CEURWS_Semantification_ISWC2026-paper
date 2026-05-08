@@ -109,7 +109,7 @@ We also point out the challenges of aligning the digital, social, and physical a
     \label{fig:swat4hcls_2024_instance}
 \end{figure}
 Traditional publishing workflows often handle the metadata of the
-required core entities (cf.\ Figure~\ref{fig:core_entities}\footnote{blue entities are the first milestone for the CEUR-WS Wikidata bot}) in a
+required core entities (cf.\ Figure~\ref{fig:core_entities}\footnote{blue: main entities in focus for CEUR-WS Wikidata bot}) in a
 manner that does not comply with the Findable, Accessible,
 Interoperable, and Reusable (FAIR) principles\footnote{We refer to
 such workflows as \tquote{unFAIR}; see Section~\ref{sec:FAIR}},
@@ -130,7 +130,6 @@ The metadata is available after some delay of weeks or months through indexing s
 
 We report on the successful use of Wikidata and Scholia as the knowledge graph platform to provide FAIR metadata for semantic analysis and querying.
 
-
 % https://cr.bitplan.com/index.php/CEUR-WS_Versions
 \subsection{Contributions of this Paper}
 The core contributions presented in this work are as follows:
@@ -143,12 +142,11 @@ The core contributions presented in this work are as follows:
 
 \end{enumerate}
 
-These contributions are valuable for other publishing use cases that struggle with the same pain points.
 
 \section{From Semantic Publishing Challenge 2014 via Text2KG~2023 to Production 2026}\label{sec:SemantificationStory}
 The Semantic Publishing Challenge~\cite{Lange2014,DiIorio2015,Ronzano_2014} started in 2014 with Task~1 calling for \tquote{answering queries related to the quality of workshops by computing metrics from data extracted from their proceedings, also considering information about persons and events}.
 
-The relevance of the original set of 20 queries was subjectively rated by us, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and another 5 queries that rely on the main index (Q1.5, Q1.12, Q1.13, Q1.16, and Q1.17) have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop~\cite{FahlHOD23}.
+We evaluated the relevance of the original set of 20 queries against three criteria: data availability, coverage, and the need for archival and DOI minting, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and another 5 queries that rely on the main index (Q1.5, Q1.12, Q1.13, Q1.16, and Q1.17) have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop~\cite{FahlHOD23}.
 The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge\_Queries}{SPARQL queries} are available as named parameterized queries~\cite{snapquery}. 
 
 \section{CEUR-WS Semantification in Wikidata}\label{sec:Semantification}
@@ -196,9 +194,9 @@ The results have been cached in JSON and SQLite storage for quick access. Locati
 
 Cermine~\cite{Tkaczyk_2015} and GROBID~\cite{Lopez_2009} have been run on the papers to provide additional metadata references. Figure~\ref{fig:ceurspt_wikidata_sync} shows a user-friendly presentation of the data mined by these steps.
 
-For each core entity, we analyzed the availability of Wikidata properties by using our wdgrid analysis tool~\cite{wdgrid,FahlHW0D22}, which also generates SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge. 
+For each core entity, we analyzed the availability of Wikidata properties by using our wdgrid analysis tool~\cite{wdgrid,FahlHW0D22}, which also generates SPARQL queries. We aligned the queries with the stated needs of the Semantic Publishing Challenge by mapping the wikidata items and properties accordingly. 
 
-snapquery~\cite{snapquery} was used to make sure that the queries are compatible with different endpoints and do not only run on the official blazegraph Wikidata query endpoint. 
+snapquery~\cite{snapquery} was used to make sure that the queries are compatible with different endpoints and do not only run on the official Blazegraph Wikidata query endpoint. 
 
 The ceur-spt prototype~\cite{ceur-spt} demonstrates the benefits of
 semantification by improving linking and navigation capabilities compared
@@ -278,10 +276,10 @@ and the CEUR-WS stakeholders themselves (Section~\ref{sec:ceurws_stakeholders}).
 
 \subsection{Scholia}
 \label{sec:scholia_inuse}
-Scholia is the most visible in-use consumer of the semantified CEUR-WS metadata.
-It is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples that form the main graph belong to scholarly articles and their linked entities. The Wikimedia foundation needed to perform a graph split due to a 4 Terabyte maximum storage limit of the Blazegraph backend in use. The Scholia community decided to use QLever~\cite{Bast2017} as the new backend and make all queries SPARQL~1.1 compliant~\cite{Willighagen2026Scholia}.
-Note that before the graph split, there was a hold on adding more scholarly articles to Wikidata which was the reason we did not mass-insert CEUR-WS paper metadata yet.
-Writes to Wikidata are performed through the officially approved bot account \textit{User:CEUR-WS}~\cite{CEURWSBot}, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
+Scholia, the most visible in-use consumer of the semantified CEUR-WS metadata, is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples of the main graph belong to scholarly articles and linked entities. The Wikimedia Foundation needed to perform a graph split due to a 4 TiB maximum storage limit of the Blazegraph backend in use. The Scholia community switched to QLever~\cite{Bast2017} and made all queries SPARQL~1.1 compliant~\cite{Willighagen2026Scholia}.
+Note that, before the graph split, there was a hold on adding more scholarly articles to Wikidata: the reason we did not mass-insert CEUR-WS paper metadata yet.
+Writes to Wikidata are performed through the officially approved bot \textit{User:CEUR-WS}~\cite{CEURWSBot}%, for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}
+.
 
 Table~\ref{tab:scholia_event_panels}
 shows 12 SPARQL-driven panels on the Scholia event
@@ -292,7 +290,7 @@ endpoint at
 graph-split QLever endpoint~\cite{Bast2017,Willighagen2026Scholia} at
 \url{https://qlever.scholia.wiki/event/Q124669329}, illustrated for \wdq{SWAT4HCLS~2024}{Q124669329}. All 12 panels survived the
 2025 Wikidata graph split unchanged; only the underlying engine and the
-SPARQL dialect (1.1 compliant) differ.
+SPARQL version (1.1 compliant) differ.
 
 \begin{table}[t]
 \centering
@@ -313,11 +311,11 @@ SPARQL dialect (1.1 compliant) differ.
 9  & \texttt{proceedings}               &table& proceedings, paper \\
 10 & \texttt{presentations}             &table& \\
 11 & \texttt{related-events-timelocation}&table& event \\
-12 & \texttt{related-events-people}     &table& event,scholar \\
+12 & \texttt{related-events-people}     &table& event, scholar \\
 \bottomrule
 \end{tabularx}
 \end{table}
-Figure~\ref{fig:swat4hcls_2024_coauthor_graph} shows the user-friendly display of the coauthorship as graph visualization.
+Figure~\ref{fig:swat4hcls_2024_coauthor_graph} shows the user-friendly visualization of the coauthorship graph.
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.8\linewidth]{images/SWAT4HCLS2024-CoauthorGraphSnippet.png}
@@ -329,11 +327,10 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph} shows the user-friendly display o
 \label{sec:wikicite}
 WikiCite~\cite{WikiCite} provides the bibliographic backbone on which
 CEUR-WS metadata is contributed to Wikidata.
-Since the CEUR-WS Wikidata bot was activated, the community members contributed to the bot created entries. 
 
 Figure~\ref{fig:wikicite_proceedings_editors} shows the distribution of Wikidata editors who have created or revised CEUR-WS \textit{proceedings} items (\wdq{conference proceedings}{Q1143604}).
-The long-tail distribution illustrates that while the officially approved \textit{User:CEUR-WS} bot~\cite{CEURWSBot} accounts for the bulk of systematic mass contributions, a broad community of individual WikiCite editors continuously curates, corrects and enriches the proceedings metadata. 
-This overlap of bot-driven bulk ingestion and human community curation is a core strength of the WikiCite approach and a prerequisite for the Scholia panels discussed in Section~\ref{sec:scholia_inuse} above.
+The long-tail distribution illustrates that while our bot accounts for the bulk of systematic mass contributions, a broad community of individual WikiCite editors continuously curates, corrects and enriches the proceedings metadata. 
+This overlap of bot-driven bulk ingestion and human community curation is a core strength of the WikiCite approach and a prerequisite for the Scholia panels discussed above.
 The plot was generated with \texttt{ceur-wd-contributions}~\cite{pyCEURmake} by traversing the revision history of all CEUR-WS proceedings items on Wikidata.
 % ceur-wd-contributions --plot /tmp/ceur_charts --progress
 \begin{figure}[t]
@@ -348,10 +345,10 @@ The plot was generated with \texttt{ceur-wd-contributions}~\cite{pyCEURmake} by 
 
 \subsection{CEUR-WS stakeholders}
 \label{sec:ceurws_stakeholders}
-The CEUR-WS bot~\cite{CEURWSBot} currently exports \textit{proceedings}
+The bot currently exports \textit{proceedings}
 and \textit{event} items only. Items for the related entities event
 series, paper, scholar and institution are created and edited by the
-CEUR-WS stakeholders that are active in the Wikidata community. The
+CEUR-WS stakeholders active in the Wikidata community. The
 SWAT4HCLS~2024 case has already been presented in
 Section~\ref{sec:Introduction} (graph walk,
 Figure~\ref{fig:swat4hcls_2024_instance}) and in
@@ -367,23 +364,23 @@ from them.  This section outlines how that relationship is being
 inverted in a bootstrapping fashion~\cite{Bardini2001,Engelbart2007},
 so that a machine-readable, ontology-based representation becomes the
 SPoT and the HTML/PDF artefacts are generated from it.
-Section~\ref{sec:ontology} introduces a first draft of the CEUR-WS
+Section~\ref{sec:ontology} introduces the CEUR-WS
 Proceedings Ontology. 
 
 \subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
 
-The CEUR-WS Proceedings Ontology formalizes the structure of the semantified data.
-A first draft is available and covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
+The CEUR-WS Proceedings Ontology\footnote{\url{https://github.com/ceurws/semantify/blob/main/ontology/ceur-ws.ttl}} formalizes the structure of the semantified data.
+It covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
 To maximize reusability and interoperability, terms from established ontologies are reused wherever appropriate, including the SPAR Ontologies~\cite{10.1007/978-3-030-00668-6_8}, Dublin Core, and Schema.org; crosswalks to Wikidata and DBLP are provided.
-The draft is already operational: JSON-LD representations are generated for every volume.\footnote{e.g.\ \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}}
-Ongoing schema consolidation is driven through two open discussions in the public \texttt{semantify} repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
+JSON-LD representations are generated for every volume.\footnote{e.g.\ \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}}
+Ongoing schema consolidation is driven through two discussions in an open repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
 
-Four design questions remain open:
-Four design questions remain open.
+There are four areas of future work.
 (i)~\textbf{Vocabulary selection.} Widely adopted vocabularies such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary; the precise choice is still under discussion for several entity types.
 (ii)~\textbf{Model granularity.} Open issues include the representation of session structure and the distinction between joint proceedings and joint events.
-(iii)~\textbf{Tooling.} Generation of the JSON-LD from the workshop website and PDFs should be automated, so that editors curate only the JSON-LD and the HTML page is regenerated from it, inverting the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
-(iv)~\textbf{Shape-based validation.} SHACL~\cite{SHACL} or ShEx~\cite{10.1145/2660517.2660523} shapes should be generated from the ontology to encode editor experience as machine-checkable rules, including cardinalities, permitted value sets, and required identifiers. Beyond ingestion-time validation, shapes can drive form generation for the editor tooling in (iii), serve as machine-readable documentation for downstream consumers, and enable continuous quality monitoring of the published knowledge graph.
+(iii)~\textbf{Tooling.} JSON-LD generation from the workshop website and PDFs should be automated, so that editors curate only the JSON-LD and the HTML is regenerated from it, inverting the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+(iv)~\textbf{Shape-based validation.} SHACL~\cite{SHACL} %or ShEx~\cite{10.1145/2660517.2660523}
+shapes should be generated from the ontology to encode editor experience as machine-checkable rules, including cardinalities, permitted value sets, and required identifiers. Beyond ingestion-time validation, shapes can drive form generation for the editor tooling in (iii), serve as machine-readable documentation for downstream consumers, and enable continuous quality monitoring of the knowledge graph.
 
 \begin{figure}[t]
     \centering
@@ -440,7 +437,7 @@ The 2026 migration of the CEUR-WS infrastructure from RWTH Aachen to Gesellschaf
 Several complementary proposals have been provided during the timeframe of this work:
 \begin{itemize}
     \item \emph{Author-driven metadata entry}: Michael Cochez proposes
-    re-using the \texttt{ceur-ws-prototype}~\cite{CEURWSPrototype},
+    re-using the \texttt{ceur-ws\\-prototype}~\cite{CEURWSPrototype},
     inspired by \texttt{ceur-make-ui}~\cite{CEURMakeUI}, with a simple
     HTML form so that authors enter their own metadata, thus automating
     volume creation and reducing editor workload.
@@ -468,6 +465,8 @@ Several complementary proposals have been provided during the timeframe of this 
 
 \section{Conclusion}\label{sec:Conclusion}
 CEUR-WS proceedings metadata is systematically made available in Wikidata via the CEUR-WS bot. The relevant Task~1 Named Parameterized Queries of the Semantic Publishing Challenge of 2014/2015 are now available on different endpoints namely the  SPARQL~1.1-compatible QLever endpoint. The Scholia portal provides production access to queries based on and extending this set. The Wikidata, WikiCite, Scholia, and CEUR-WS stakeholder communities have appreciated and contributed to this work.
+
+ The contributions of this work are valuable for  \footnotelink{https://cr.bitplan.com/index.php/PublishingVenues}{other publishing use cases} that might struggle with the same pain points.
 
 \subsection{Limitations}\label{sec:Limitations}
 The contributions reported here are subject to several limitations.
