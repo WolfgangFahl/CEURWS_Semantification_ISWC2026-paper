@@ -340,7 +340,7 @@ revision history of all CEUR-WS proceedings items on Wikidata.
 % ceur-wd-contributions --plot /tmp/ceur_charts --progress
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.85\linewidth]{images/distribution_of_proceedings_community_editors.png}
+    \includegraphics[width=0.85\linewidth]{images/wd_contribution/with_bots/Proceedings/editor_activity_histogram.png}
     \caption{Distribution of WikiCite community editors contributing to
     CEUR-WS proceedings items on Wikidata.}
     \label{fig:wikicite_proceedings_editors}
@@ -364,17 +364,21 @@ Figure~\ref{fig:swat4hcls_2024_coauthor_graph}).
 
 \subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
 
-The CEUR-WS Proceedings Ontology formalizes the structure of the semantified data. 
-A first draft is already available and covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
-To maximize reusability and interoperability, terms from established ontologies such as Dublin Core and Schema.org are reused wherever appropriate, and crosswalks to Wikidata and DBLP are provided.
+The CEUR-WS Proceedings Ontology formalizes the structure of the semantified data.
+A first draft is available and covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
+To maximize reusability and interoperability, terms from established
+ontologies are reused wherever appropriate, including the SPAR
+Ontologies~\cite{10.1007/978-3-030-00668-6_8} such as Dublin Core and Schema.org are reused, and crosswalks to Wikidata and DBLP are provided.
 The draft is already operational: JSON-LD representations are generated for every volume.\footnote{e.g.\ \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}}
 Ongoing schema consolidation is driven through two open discussions in the public \texttt{semantify} repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
 
 Four design questions remain open:
-(i)~the precise selection of vocabularies --- widely adopted ones such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary, though the choice is still under discussion for several entity types;
-(ii)~the granularity of the model, in particular the representation of session structure and the distinction between joint proceedings and joint events; and
-(iii)~tooling --- generation of the JSON-LD from the workshop website and PDFs should be automated so that editors curate only the JSON-LD and the HTML page is regenerated from it, inverting the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
-(iv))~SHACL --- SHACL generation from the ontology
+\begin{enumerate}
+ \item \textbf{Vocabulary selection.} Widely adopted vocabularies such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary; the precise choice is still under discussion for several entity types.
+ \item \textbf{Model granularity.} Open issues include the representation of session structure and the distinction between joint proceedings and joint events.
+ \item \textbf{Tooling.} Generation of the JSON-LD from the workshop website and PDFs should be automated, so that editors curate only the JSON-LD and the HTML page is regenerated from it. This inverts the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+ \item \textbf{Shape-based validation.} SHACL~\cite{SHACL} or ShEx~\cite{10.1145/2660517.2660523} shapes should be generated from the ontology to encode editor experience as machine-checkable rules, including cardinalities, permitted value sets, and required identifiers. Beyond ingestion-time validation, shapes can drive form generation for the editor tooling in (iii), serve as machine-readable documentation for downstream consumers, and enable continuous quality monitoring of the published knowledge graph.
+\end{enumerate}
 
 \begin{figure}[t]
     \centering
@@ -390,7 +394,7 @@ The Semantic Publishing Challenge and the Scholia portal both use queries as the
 
 A main success factor for this work was being able to apply metadata to the queries. This way the queries could be ordered by task and/or relevance and linked to their respective implementation. These links were just motivations - as first class citizens the queries are available with proper URIs as persistent identifiers and part of a meta-knowledge graph that is useful for the further semantification steps.  
 \subsection{Property creation as a community process}
-Wikidata properties such as \wdp{P11633}{colocated with} undergo a \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal}{Wikidata's property proposal process} process before a new property is created. As described in ~\cite{FahlHOD23} the creation of \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal/colocated\_with}{property proposal} took some effort and led to the clarification that the property is asymmetric. The property was considered as highly relevant and well defined.
+Wikidata properties such as \wdp{colocated with}{P11633} undergo a \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal}{Wikidata's property proposal process} process before a new property is created. As described in ~\cite{FahlHOD23} the creation of \footnotelink{https://www.wikidata.org/wiki/Wikidata:Property\_proposal/colocated\_with}{property proposal} took some effort and led to the clarification that the property is asymmetric. The property was considered as highly relevant and well defined.
 \subsection{Legal aspects of Publishing Personal Data of Scholars}
 \label{sec:legal}
 The proposed workflow calls for publishing personal data of authors
