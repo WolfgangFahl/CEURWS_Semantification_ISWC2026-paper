@@ -1,0 +1,29 @@
+#!/bin/bash
+# Upload wd_contribution images to CR wiki with path-derived filenames
+# WF 2026-05-08
+#
+# Derives wiki filenames from the relative path
+#   images/wd_contribution/with_bots/Conference/top_contributors.png
+#   -> wd_contribution_with_bots_Conference_top_contributors.png
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+TARGET="cr"
+IMAGE_DIR="images/wd_contribution"
+tmpdir=$(mktemp -d)
+trap 'rm -rf "$tmpdir"' EXIT
+
+echo "Preparing uploads for wiki target: $TARGET"
+
+find "$IMAGE_DIR" -name "*.png" -print0 | while IFS= read -r -d '' file; do
+    rel="${file#images/}"
+    wikibasename="${rel//\//_}"
+    tmppath="$tmpdir/$wikibasename"
+    cp "$file" "$tmppath"
+    echo "Uploading $file -> $wikibasename"
+    wikiupload --files "$tmppath" -t "$TARGET"
+done
+
+echo "Done."

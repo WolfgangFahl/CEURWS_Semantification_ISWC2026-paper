@@ -16,6 +16,12 @@ Each set of intended actions needs to be explained in the format:
 - Do NOT use TodoWrite for tasks with fewer than 4 steps.
 - Do NOT read files you already have contents for.
 - Keep summaries to 2-3 lines max unless asked for detail.
+
+## CR Wiki
+
+The cr wiki is at https://cr.bitplan.com
+Use `wikiupload --files <file> -t cr` to upload files.
+Use the wikipush_* tools to read/edit wiki pages.
 - Minimize tool calls. Batch parallel calls. Avoid redundant calls.
 
 ## Security
