@@ -279,6 +279,12 @@ github_action() {
     OUTPUT_PDF="${MAIN_FILE}.pdf"
     action "GitHub action: Building PDF..."
 
+    # Fail fast if required tools (pdflatex, bibtex, inkscape, fc-list) missing
+    if ! check_dependencies; then
+        error "Dependency check failed — aborting CI build" 0
+        return 1
+    fi
+
     # Always build in CI (timestamps don't work in Git)
     if build_pdf; then
         if [ ! -f "$OUTPUT_PDF" ]; then

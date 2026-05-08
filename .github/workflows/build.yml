@@ -28,6 +28,14 @@ jobs:
     - name: Make script executable
       run: chmod +x scripts/tex2pdf
 
+    - name: Install Inkscape (required for \includesvg figures)
+      run: |
+        apt-get update
+        apt-get install -y --no-install-recommends inkscape
+
+    - name: Check dependencies
+      run: ./scripts/tex2pdf --check
+
     - name: rebuild PDF and check in if successful 
       run: ./scripts/tex2pdf --github
 
