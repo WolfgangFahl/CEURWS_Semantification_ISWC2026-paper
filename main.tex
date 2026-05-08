@@ -205,7 +205,7 @@ Vol-3262 in Figure~\ref{fig:ceurspt_vol3262_detail}.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\linewidth]{images/meeting_ceurspt_vol3262_detail.png}
+    \includegraphics[width=0.7\linewidth]{images/meeting_ceurspt_vol3262_details.png}
     \caption{Vol-3262 ceur-spt page: structured
     paper-level metadata derived from the HTML index and PDF mining
     pipeline.}
@@ -367,12 +367,11 @@ The draft is already operational: JSON-LD representations are generated for ever
 Ongoing schema consolidation is driven through two open discussions in the public \texttt{semantify} repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
 
 Four design questions remain open:
-\begin{enumerate}
- \item \textbf{Vocabulary selection.} Widely adopted vocabularies such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary; the precise choice is still under discussion for several entity types.
- \item \textbf{Model granularity.} Open issues include the representation of session structure and the distinction between joint proceedings and joint events.
- \item \textbf{Tooling.} Generation of the JSON-LD from the workshop website and PDFs should be automated, so that editors curate only the JSON-LD and the HTML page is regenerated from it. This inverts the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
- \item \textbf{Shape-based validation.} SHACL~\cite{SHACL} or ShEx~\cite{10.1145/2660517.2660523} shapes should be generated from the ontology to encode editor experience as machine-checkable rules, including cardinalities, permitted value sets, and required identifiers. Beyond ingestion-time validation, shapes can drive form generation for the editor tooling in (iii), serve as machine-readable documentation for downstream consumers, and enable continuous quality monitoring of the published knowledge graph.
-\end{enumerate}
+Four design questions remain open.
+(i)~\textbf{Vocabulary selection.} Widely adopted vocabularies such as Schema.org and Dublin Core are preferred over bespoke terms, with mappings provided where necessary; the precise choice is still under discussion for several entity types.
+(ii)~\textbf{Model granularity.} Open issues include the representation of session structure and the distinction between joint proceedings and joint events.
+(iii)~\textbf{Tooling.} Generation of the JSON-LD from the workshop website and PDFs should be automated, so that editors curate only the JSON-LD and the HTML page is regenerated from it, inverting the current HTML-as-SPoT situation described in Section~\ref{sec:FAIR}.
+(iv)~\textbf{Shape-based validation.} SHACL~\cite{SHACL} or ShEx~\cite{10.1145/2660517.2660523} shapes should be generated from the ontology to encode editor experience as machine-checkable rules, including cardinalities, permitted value sets, and required identifiers. Beyond ingestion-time validation, shapes can drive form generation for the editor tooling in (iii), serve as machine-readable documentation for downstream consumers, and enable continuous quality monitoring of the published knowledge graph.
 
 \begin{figure}[t]
     \centering
