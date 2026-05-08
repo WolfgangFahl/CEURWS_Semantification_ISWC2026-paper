@@ -109,7 +109,7 @@ We also point out the challenges of aligning the digital, social, and physical a
     \label{fig:swat4hcls_2024_instance}
 \end{figure}
 Traditional publishing workflows often handle the metadata of the
-required core entities (cf.\ Figure~\ref{fig:core_entities}\footnote{blue entities as in the focus of our original DFG/ConfIDent founding}) in a
+required core entities (cf.\ Figure~\ref{fig:core_entities}\footnote{blue entities are the first milestone for the CEUR-WS Wikidata bot}) in a
 manner that does not comply with the Findable, Accessible,
 Interoperable, and Reusable (FAIR) principles\footnote{We refer to
 such workflows as \tquote{unFAIR}; see Section~\ref{sec:FAIR}},
@@ -130,9 +130,6 @@ The metadata is available after some delay of weeks or months through indexing s
 
 We report on the successful use of Wikidata and Scholia as the knowledge graph platform to provide FAIR metadata for semantic analysis and querying.
 
-The effort required was substantially higher than initially anticipated,
-as a number of non-trivial edge cases in the legacy metadata had to be
-resolved individually.
 
 % https://cr.bitplan.com/index.php/CEUR-WS_Versions
 \subsection{Contributions of this Paper}
@@ -260,7 +257,7 @@ event series based on an existing concept in its ontology has so far
 been unsuccessful.
 
 
-\section{In-Use: Community Impact - WikiCite, Scholia, CEUR-WS}
+\section{In-Use Impact -- WikiCite, Scholia, CEUR-WS}
 \label{sec:Community Impact}
 
 WikiCite is an initiative to create a bibliographic database based on Wikidata~\cite{WikiCite}. 
@@ -386,6 +383,7 @@ Four design questions remain open:
 
 
 \section{Lessons Learned}\label{sec:LessonsLearned}
+The effort for this work required was substantially higher than initially anticipated, as a large number of non-trivial edge cases in the legacy metadata had to be resolved individually and manually.
 \subsection{Queries as first-class citizens}
 The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{If you can not query it, it does not exist} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries. Having the queries as named, parameterized, technology-independent entities themselves is helpful~\cite{snapquery}. Nielsen's Synia ~\cite{NielsenSynia2023} approach shows a lightweight application of this idea.
 
@@ -479,16 +477,16 @@ work.
 \subsection{Supplemental Material Statement} Source code for the prototypes and semantification tools is available via the repositories of the
 \footnotelink{https://github.com/ceurws}{github ceurws organization}. Extended supplemental material --- including the schema diagrams (Figures~\ref{fig:core_entities} and~\ref{fig:swat4hcls_2024_instance}) in their editable Graphviz form, the SPARQL queries derived from the Semantic Publishing Challenge, and background research --- is provided by the CR research wiki~\cite{Fahl_CR_Wiki}.
 The LaTeX sources, bibliography, build pipeline and the \texttt{AGENTS.md} governance policy for AI-assisted editing of this paper are available at~\cite{CEURWSSemantificationISWC2026Repo}. The cited software artefacts are released under Apache-2.0: \texttt{ceur-spt}~\cite{ceur-spt}, \texttt{pyCEURmake}~\cite{pyCEURmake}, \texttt{snapquery}~\cite{snapquery}, and \texttt{wdgrid}~\cite{wdgrid}.
-\subsection{Acknowledgements}
-\label{sec:ack}
-
-We would like to thank Jakob Vo{\ss} for helping with the k10plus matching and creating the Wikidata property \wdp{colocated with}{P11633} in due time.
-
-Thomas Hoeren and Jonas Kuiter of ITM, M{\"u}nster kindly gave hints for legal aspects as summarized in section~\ref{sec:legal}.
-
-This paper is dedicated to the memory of CEUR-WS board member Ralf Klamma $\dag$ January 2023.
-
-This research has been partly funded by a grant of the Deutsche Forschungsgemeinschaft (DFG).\footnote{\href{https://gepris.dfg.de/gepris/projekt/426477583}{ConfIDent project; see https://gepris.dfg.de/gepris/projekt/426477583}}
+%\subsection{Acknowledgements}
+%\label{sec:ack}
+%
+%We would like to thank Jakob Vo{\ss} for helping with the k10plus matching and creating the Wikidata property \wdp{colocated with}{P11633} in due time.
+%
+%Thomas Hoeren and Jonas Kuiter of ITM, M{\"u}nster kindly gave hints for legal aspects as summarized in section~\ref{sec:legal}.
+%
+%This paper is dedicated to the memory of CEUR-WS board member Ralf Klamma $\dag$ January 2023.
+%
+%This research has been partly funded by a grant of the Deutsche Forschungsgemeinschaft (DFG).\footnote{\href{https://gepris.dfg.de/gepris/projekt/426477583}{ConfIDent project; see https://gepris.dfg.de/gepris/projekt/426477583}}
 
 \subsection{Declaration of use of Generative AI}
 The authors used AI-based coding assistants during the engineering and preparation of this work. Use of such assistants is governed by an AGENTS.md policy file maintained in this paper's repository and, equivalently, in the source repositories of the software artefacts ceur-spt~\cite{ceur-spt} and pyCEURmake~\cite{pyCEURmake}. The policy mandates:
