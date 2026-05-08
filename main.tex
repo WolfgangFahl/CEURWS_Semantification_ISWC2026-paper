@@ -124,7 +124,8 @@ Therefore, the opportunities to collect the metadata during the  lifecycle of an
 \subsection{CEUR Workshop Proceedings}
 Since 1995, CEUR Workshop Proceedings (CEUR-WS)\footnote{\url{https://ceur-ws.org/}} has published more than 4,200 Volumes and over 90,000 papers as a free online service for publishing proceedings of scientific workshops (and smaller conferences) in computer science, operated by a team of unpaid volunteers.
 
-Technically, all data and metadata of the proceedings are directly represented as a static website using HTML, PDF and HTTP and FTP protocols as provided by the workshop editors along the CEUR-WS \tquote{how to submit} guide~\cite{CEURHowtoSubmit}.
+Technically, all data and metadata of the proceedings are directly represented as a
+static website in HTML and PDF, served over HTTP and FTP as provided by the workshop editors along the CEUR-WS \tquote{how to submit} guide~\cite{CEURHowtoSubmit}.
 
 The metadata is available after some delay of weeks or months through indexing services such as DBLP~\cite{Ley2009} and K10plus~\cite{k10plus2019}\footnote{\url{https://dblp.org/}, \url{https://opac.k10plus.de}} and at the archive of the TIB \url{https://www.tib.eu/}.
 
@@ -136,7 +137,7 @@ The core contributions presented in this work are as follows:
 \begin{enumerate}
     \item To provide the tools, infrastructure, and approaches to consistently supply high-quality FAIR metadata (semantification) for CEUR-WS as detailed in section~\ref{sec:Semantification}.
 
-    \item Splitting the metadata for the three main entities: Event, Event Series, and Proceedings is a major step towards improving the metadata quality and FAIRness.
+    \item Splitting the metadata for the three main entities (Event, Event Series, and Proceedings) is a major step towards improving the metadata quality and FAIRness.
 
     \item Providing a bootstrapping approach~\cite{Bardini2001,Engelbart2007} to shift the single point of truth from the current HTML/PDF files to an RDF ready ontology-based format as outlined in Section~\ref{sec:single_point_of_truth_bootstrapping}.
 
@@ -146,7 +147,7 @@ The core contributions presented in this work are as follows:
 \section{From Semantic Publishing Challenge 2014 via Text2KG~2023 to Production 2026}\label{sec:SemantificationStory}
 The Semantic Publishing Challenge~\cite{Lange2014,DiIorio2015,Ronzano_2014} started in 2014 with Task~1 calling for \tquote{answering queries related to the quality of workshops by computing metrics from data extracted from their proceedings, also considering information about persons and events}.
 
-We evaluated the relevance of the original set of 20 queries against three criteria: data availability, coverage, and the need for archival and DOI minting, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries and another 5 queries that rely on the main index (Q1.5, Q1.12, Q1.13, Q1.16, and Q1.17) have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop~\cite{FahlHOD23}.
+We evaluated the relevance of the original set of 20 queries against three criteria: data availability, coverage, and the need for archival and DOI minting, resulting in \footnotelink{https://cr.bitplan.com/index.php/List\_of\_Queries}{a list sorting the queries by priority}. The most relevant queries, together with the 5 queries that rely on the main index (Q1.5, Q1.12, Q1.13, Q1.16, and Q1.17), have been taken as the definition of done. We reported on the successful Wikidata export of all CEUR-WS proceeding and event metadata in 2023 at the TEXT2KG Workshop~\cite{FahlHOD23}.
 The \footnotelink{https://cr.bitplan.com/index.php/Semantic\_Publishing\_Challenge\_Queries}{SPARQL queries} are available as named parameterized queries~\cite{snapquery}. 
 
 \section{CEUR-WS Semantification in Wikidata}\label{sec:Semantification}
@@ -276,10 +277,11 @@ and the CEUR-WS stakeholders themselves (Section~\ref{sec:ceurws_stakeholders}).
 
 \subsection{Scholia}
 \label{sec:scholia_inuse}
-Scholia, the most visible in-use consumer of the semantified CEUR-WS metadata, is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis ~\cite{AKhatun2021} showed that roughly half of the 17 billion triples of the main graph belong to scholarly articles and linked entities. The Wikimedia Foundation needed to perform a graph split due to a 4 TiB maximum storage limit of the Blazegraph backend in use. The Scholia community switched to QLever~\cite{Bast2017} and made all queries SPARQL~1.1 compliant~\cite{Willighagen2026Scholia}.
-Note that, before the graph split, there was a hold on adding more scholarly articles to Wikidata: the reason we did not mass-insert CEUR-WS paper metadata yet.
-Writes to Wikidata are performed through the officially approved bot \textit{User:CEUR-WS}~\cite{CEURWSBot} , for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}
-.
+Scholia, the most visible in-use consumer of the semantified CEUR-WS metadata, is based on a set of over 380 named parameterized SPARQL queries organized around 40 different aspects. The Wikidata Scholarly Articles Subgraph Analysis~\cite{AKhatun2021} showed that roughly half of the 17 billion triples of the main graph belong to scholarly articles and linked entities. The Wikimedia Foundation needed to perform a graph split due to a 4 TiB maximum storage limit of the Blazegraph backend in use. The Scholia community switched to QLever~\cite{Bast2017} and made all queries SPARQL~1.1 compliant~\cite{Willighagen2026Scholia}.
+Note that, before the graph split, there was a hold on adding more scholarly
+articles to Wikidata, which is why CEUR-WS paper metadata has not yet been
+mass-inserted.
+Writes to Wikidata are performed through the officially approved bot \textit{User:CEUR-WS}~\cite{CEURWSBot} , for which the community permission was obtained in 2023~\cite{ceur-ws-bot-rquest2023}.
 
 Table~\ref{tab:scholia_event_panels}
 shows 12 SPARQL-driven panels on the Scholia event
@@ -370,7 +372,7 @@ Proceedings Ontology.
 \subsection{CEUR-WS Proceedings Ontology}\label{sec:ontology}
 
 The CEUR-WS Proceedings Ontology\footnote{\url{https://github.com/ceurws/semantify/blob/main/ontology/ceur-ws.ttl}} formalizes the structure of the semantified data.
-It covers all entity classes defined by the Semantification Challenge (see Figure~\ref{fig:ontology_schema_overview}).
+It covers all entity classes defined by the Semantic Publishing Challenge (see Figure~\ref{fig:ontology_schema_overview}).
 To maximize reusability and interoperability, terms from established ontologies are reused wherever appropriate, including the SPAR Ontologies~\cite{10.1007/978-3-030-00668-6_8}, Dublin Core, and Schema.org; crosswalks to Wikidata and DBLP are provided.
 JSON-LD representations are generated for every volume.\footnote{e.g.\ \url{http://ceurspt.wikidata.dbis.rwth-aachen.de/Vol-3264.jsonld}}
 Ongoing schema consolidation is driven through two discussions in an open repository, covering the schema itself~\cite{CEURWSSemantify6} and sample volume subgraphs~\cite{CEURWSSemantify15}.
@@ -389,13 +391,12 @@ shapes should be generated from the ontology to encode editor experience as mach
     \label{fig:ontology_schema_overview}
 \end{figure}
 
-
 \section{Lessons Learned}\label{sec:LessonsLearned}
-The effort for this work required was substantially higher than initially anticipated, as a large number of non-trivial edge cases in the legacy metadata had to be resolved individually and manually.
+The effort required for this work was substantially higher than initially anticipated, as a large number of non-trivial edge cases in the legacy metadata had to be resolved individually and manually.
 The following lessons generalize beyond CEUR-WS.
 
 \subsection{Queries as first-class citizens}
-The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{If you can not query it, it does not exist} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries, similar to competency questions~\cite{Uschold1996-xt} in ontology engineering. Having the queries as named, parameterized, technology-independent entities themselves is helpful~\cite{snapquery}. Nielsen's Synia~\cite{NielsenSynia2023} approach shows a lightweight application of this idea.
+The Semantic Publishing Challenge and the Scholia portal both use queries as the core structuring elements. Using the guiding principle \tquote{If you cannot query it, it does not exist} changes the view on how to provide metadata. While traditionally schemas and ontologies are created first to allow querying for use-case specific areas of interest, the query-first and query as first-class citizens approach describes the information needs of stakeholders as queries, similar to competency questions~\cite{Uschold1996-xt} in ontology engineering. Having the queries as named, parameterized, technology-independent entities themselves is helpful~\cite{snapquery}. Nielsen's Synia~\cite{NielsenSynia2023} approach shows a lightweight application of this idea.
 
 A main success factor for this work was being able to apply metadata to the queries. This way the queries could be ordered by task and/or relevance and linked to their respective implementation. These links were just motivations -- as first-class citizens the queries are available with proper URIs as persistent identifiers and part of a meta-knowledge graph that is useful for the further semantification steps.  
 \subsection{Property creation as a community process}
@@ -405,11 +406,8 @@ Wikidata properties such as \wdp{colocated with}{P11633} undergo a \footnotelink
 The proposed workflow calls for publishing personal data of authors
 and editors early in the life cycle of an event. According to the legal advisors we consulted, this is legal since a combination of conditions (Art.\ 6 GDPR) is met:
 Explicit consent is given by the stakeholders (Art.\ 6(1)(a)), the legitimate interest of the
-stakeholders is pursued (Art.\ 6(1)(f)), the data might be public already, the processing is
-necessary for scientific research (Art.\ 6(1)(e), Art.\ 89). The strongest condition is that
-there might be a legal obligation (Art.\ 6(1)(c)) as would be the case if publishing via major
-print publishers that have to provide a copy of the proceedings to the German National Library
-according to German law.
+stakeholders is pursued (Art.\ 6(1)(f)), the data might be public already, the processing is necessary for scientific research (Art.\ 6(1)(e), Art.\ 89). The strongest condition is that there might be a legal obligation (Art.\ 6(1)(c)) as would be the case when publishing via major print publishers, which must
+provide a copy of the proceedings to the German National Library under German law.
 Consent, Public Data, and Contractual Necessity are crucial for
 scholarly publishing.
 The legal basis and data-subject rights for publication of personal data of scholars by CEUR-WS are documented in the CEUR-WS privacy policy\footnote{\url{https://ceur-ws.org/privacy-dsgvo.html}} and tracked in the project issue tracker \footnotelink{https://github.com/ceurws/semantify/issues/11}{issue~\#11 of the CEUR semantify project}.
